@@ -31,7 +31,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Quramy/tsuquyomi'
+if v:version >= 704
+	NeoBundle 'Quramy/tsuquyomi'
+endif
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/unite.vim'
 " NeoBundle 'Shougo/neomru'
