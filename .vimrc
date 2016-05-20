@@ -5,10 +5,10 @@ set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " -- colors
-" syntax enable
-" set background=light
+syntax enable
+set background=light
 " colorscheme solarized
-" let g:solarized_termcolrs=256
+let g:solarized_termcolrs=256
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
