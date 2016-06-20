@@ -1,6 +1,6 @@
 " language
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 
 " set row number
 set number
@@ -23,9 +23,9 @@ set autoindent "改行時に前の行のインデントを継続する
 set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 
 " complete parent
-imap { {}<LEFT>
-imap [ []<LEFT>
-imap ( ()<LEFT>
+" imap { {}<LEFT>
+" imap [ []<LEFT>
+" imap ( ()<LEFT>
 
 "---------- NEOBUNDLE ---------- 
 
@@ -52,6 +52,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\    },
 			\ }
 " インストールしたいプラグインを記述
+" emmet
+NeoBundle 'mattn/emmet-vim'
+" let g:user_emmet_leader_key='<c-t>'
 " ファイルマネージャ
 NeoBundle 'scrooloose/nerdtree'
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -89,5 +92,5 @@ NeoBundleCheck
 " filetype plugin indent on
  
 "---------- PATHOGEN ----------
-" execute pathogen#infect()
+execute pathogen#infect()
 
