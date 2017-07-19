@@ -3,6 +3,11 @@ set backspace=indent,eol,start
 " set row number
 set number
 
+set cursorline
+
+set colorcolumn=80
+
+
 " enable mouse
 set mouse=a
 
@@ -109,9 +114,11 @@ vmap <Leader>b <Plug>(openbrowser-smart-search)
 NeoBundle "tpope/vim-fugitive"
 let g:airline#extensions#branch#enabled = 1
 NeoBundle "Shougo/neocomplete.vim"
-if filereadable(expand('~/dotfiles/.neocomplete.conf.vimrc'))
+if filereadable(expand('~/vim/scripts/neocomplete.conf.vim'))
   source ~/dotfiles/.neocomplete.conf.vimrc
 endif
+
+NeoBundle "Shougo/unite.vim"
 
 " NeoBundle設定の終了
 call neobundle#end()
