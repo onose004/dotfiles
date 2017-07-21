@@ -1,13 +1,13 @@
 dotfiles
 ===
 
-## Installation
+### Installation
 
 `./setup.sh`
 
 ### Remaining Tasks
 
-- [ ] clean up vimrc
+- [x] clean up vimrc
 - [ ] install oh-my-zsh
 - [ ] apply oh-my-zsh theme
 - [ ] apply zsh dracula theme
