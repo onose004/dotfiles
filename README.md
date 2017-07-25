@@ -9,7 +9,8 @@ dotfiles
 
 - [x] clean up vimrc
 - [ ] install oh-my-zsh
-- [ ] apply oh-my-zsh theme
-- [ ] apply zsh dracula theme
+- [x] apply oh-my-zsh theme
+- [x] apply zsh dracula theme
 - [ ] install powerline
-- [ ] revert command
+- [x] revert command
+- [ ] fix revert command
