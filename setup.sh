@@ -1,4 +1,3 @@
-
 #!/bin/bash
 usage_exit() {
   echo "Usage: " 1>&2
