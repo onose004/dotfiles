@@ -1,17 +1,9 @@
-" set row number
 set number
-
 set cursorline
-
 set colorcolumn=80
-
-
-" enable mouse
 set mouse=a
-
 syntax enable
 
-" indent
 set expandtab "タブ入力を複数の空白入力に置き換える
 set tabstop=2 "画面上でタブ文字が占める幅
 set shiftwidth=2 "自動インデントでずれる幅

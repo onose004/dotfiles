@@ -33,11 +33,11 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
   "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" <tab>: completion.
+inoremap <expr><tab>  pumvisible() ? "\<c-n>" : "\<tab>"
+" <c-h>, <bs>: close popup and delete backword char.
+inoremap <expr><c-h> neocomplete#smart_close_popup()."\<c-h>"
+inoremap <expr><bs> neocomplete#smart_close_popup()."\<c-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
