@@ -33,11 +33,11 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'ntpeters/vim-better-whitespace'
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle "tyru/caw.vim.git"
-NeoBundle "tyru/open-browser.vim"
-NeoBundle "tpope/vim-fugitive"
-NeoBundle "Shougo/neocomplete.vim"
-NeoBundle "Shougo/unite.vim"
+NeoBundle 'tyru/caw.vim.git'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'myhere/vim-nodejs-complete'
 
