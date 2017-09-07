@@ -97,3 +97,4 @@ export PATH=$PATH:/Users/ryosukeonose/Documents/Lab/Research/FabricSensor/Tools/
 
 # powerline-daemon -q
 # . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+source ~/.bash_profile 

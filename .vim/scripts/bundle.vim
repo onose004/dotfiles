@@ -40,6 +40,8 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'myhere/vim-nodejs-complete'
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'Quramy/tsuquyomi'
 
 call neobundle#end()
 filetype plugin indent on
