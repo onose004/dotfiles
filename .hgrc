@@ -2,7 +2,7 @@
 [ui]
 # name and email, e.g.
 # username = Jane Doe <jdoe@example.com>
-username = Ryosuke Onose <dev@onose.ws>
+username = ${USER_NAME} <${USER_MAIL}>
 
 [extensions]
 # uncomment these lines to enable some popular extensions
