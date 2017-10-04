@@ -11,3 +11,4 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+cat ~/dotfiles/var/username | xargs -I{} sh -c "export {}"
