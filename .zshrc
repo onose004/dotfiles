@@ -13,4 +13,6 @@ fi
 # Customize to your needs...
 
 # Export global variables
-cat ~/dotfiles/var/username | xargs -I{} sh -c "export {}"
+while IFS= read -r line; do
+  export "$line"
+done < ~/dotfiles/var/username
