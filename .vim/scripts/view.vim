@@ -4,6 +4,7 @@ set colorcolumn=80
 set mouse=a
 syntax on
 set synmaxcol=200
+set hlsearch " 検索のハイライト
 
 set expandtab "タブ入力を複数の空白入力に置き換える
 set tabstop=2 "画面上でタブ文字が占める幅
