@@ -21,13 +21,13 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\     'unix' : 'gmake',
 			\    },
 			\ }
+" NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'vim-airline/vim-airline'
 
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-NeoBundle 'airblade/vim-gitgutter'
-" NeoBundle 'Lokaltog/vim-powerline'
-" NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'dracula/vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'digitaltoad/vim-jade'
