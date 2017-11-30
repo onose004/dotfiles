@@ -21,13 +21,13 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\     'unix' : 'gmake',
 			\    },
 			\ }
+" NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'vim-airline/vim-airline'
 
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-NeoBundle 'airblade/vim-gitgutter'
-" NeoBundle 'Lokaltog/vim-powerline'
-" NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'dracula/vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'digitaltoad/vim-jade'
@@ -44,6 +44,7 @@ NeoBundle 'ujihisa/neco-look'
 NeoBundle 'myhere/vim-nodejs-complete'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'Quramy/tsuquyomi'
+NeoBundle 'davidhalter/jedi-vim'
 
 call neobundle#end()
 filetype plugin indent on

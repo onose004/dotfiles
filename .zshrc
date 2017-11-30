@@ -5,6 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+alias git-s='git status'
+alias git-u='git add -u'
+alias git-m='git commit -m'
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
