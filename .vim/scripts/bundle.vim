@@ -22,7 +22,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\    },
 			\ }
 " NeoBundle 'Lokaltog/vim-powerline'
-" NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
 
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'mattn/emmet-vim'
