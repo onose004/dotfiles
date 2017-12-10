@@ -1,6 +1,6 @@
-"------------------------------------
+"-------------------------------------------------------------------------------
 " neobundle setting
-"------------------------------------
+"-------------------------------------------------------------------------------
 
 if has('vim_starting')
   if &compatible
@@ -22,7 +22,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\    },
 			\ }
 " NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'vim-airline/vim-airline'
+" NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'mattn/emmet-vim'
