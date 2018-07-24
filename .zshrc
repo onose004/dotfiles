@@ -13,7 +13,10 @@
 
 alias git-s='git status'
 alias git-u='git add -u'
+alias git-us='git-u ; git-s'
 alias git-m='git commit -m'
+alias git-g='git log --graph'
+alias lla='ll -a'
 
 export LC_ALL=ja_JP.UTF-8
 powerline-daemon -q
