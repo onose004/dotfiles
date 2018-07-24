@@ -6,6 +6,10 @@ syntax on
 set synmaxcol=200
 set hlsearch " 検索のハイライト
 
+if has('conceal')
+  set conceallevel=0 concealcursor=
+endif
+
 set expandtab "タブ入力を複数の空白入力に置き換える
 set tabstop=2 "画面上でタブ文字が占める幅
 set shiftwidth=2 "自動インデントでずれる幅
@@ -18,11 +22,16 @@ let g:lightline = {
       \ 'colorscheme': 'Dracula',
       \ }
 
-if has('conceal')
-  set conceallevel=0 concealcursor=
-endif
-set conceallevel=0
-
+" 文字列中のSQLをハイライト
+let php_sql_query           = 1
+" Baselibメソッドのハイライト
+let php_baselib             = 1
+" 文字列中のHTMLをハイライト
+let php_htmlInStrings       = 1
+" <? をハイライト除外にする
+let php_noShortTags         = 1
+" カッコが閉じていない場合にハイライト
+let php_parent_error_close  = 1
 
 
 " Cursor line/column {{{1
