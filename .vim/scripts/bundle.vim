@@ -23,9 +23,10 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\ }
 
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'davidhalter/jedi-vim'
+" NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'dracula/vim'
+NeoBundle 'evidens/vim-twig'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'leafgarland/typescript-vim'
 " NeoBundle 'Lokaltog/vim-powerline'
@@ -46,7 +47,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/neco-look'
 " NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-NeoBundle 'Yggdroot/indentLine'
+" NeoBundle 'Yggdroot/indentLine'
 
 call neobundle#end()
 filetype plugin indent on
