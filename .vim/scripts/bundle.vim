@@ -1,6 +1,6 @@
-"------------------------------------
+"-------------------------------------------------------------------------------
 " neobundle setting
-"------------------------------------
+"-------------------------------------------------------------------------------
 
 if has('vim_starting')
   if &compatible
@@ -21,30 +21,16 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\     'unix' : 'gmake',
 			\    },
 			\ }
-" NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'vim-airline/vim-airline'
 
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-NeoBundle 'dracula/vim'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'ntpeters/vim-better-whitespace'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'tyru/caw.vim.git'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'ujihisa/neco-look'
-NeoBundle 'myhere/vim-nodejs-complete'
-NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'onose004/vim-mojave'
 NeoBundle 'Quramy/tsuquyomi'
-NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'ujihisa/neco-look'
 
 call neobundle#end()
 filetype plugin indent on

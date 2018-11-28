@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+
+i=`ls | head -n 1`
+tmux send-keys "cd $i"
+for i in `ls | tail -n +2`
+do
+  tmux split-window
+  tmux select-layout tiled
+  tmux send-keys "cd $i"
+done
+
+tmux set-window-option synchronize-panes on
