@@ -3,9 +3,8 @@ set colorcolumn=80
 set mouse=a
 syntax on
 set synmaxcol=200
-set hlsearch " 検索のハイライト
+set hlsearch
 set cursorline
-highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
 
 if has('conceal')
   set conceallevel=0 concealcursor=
