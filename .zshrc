@@ -5,46 +5,26 @@
 # /___|___/_| |_|_|  \___|
 #
 
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 alias git-s='git status'
 alias git-u='git add -u'
 alias git-us='git-u ; git-s'
 alias git-m='git commit -m'
 alias git-g='git log --graph'
 alias lla='ll -a'
+alias heic2jpg='for i in `ls *.heic *.HEIC`; do; sips --setProperty format jpeg $i --out ${i%.*}.jpg; done; rm *.heic'
 
 export LC_ALL=ja_JP.UTF-8
-powerline-daemon -q
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 source ~/.profile
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-# Customize to your needs...
 
 # Export global variables
 while IFS= read -r line; do
   export "$line"
 done < ~/dotfiles/var/username
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
@@ -107,3 +87,7 @@ function tmux_automatically_attach_session()
   fi
 }
 tmux_automatically_attach_session
+
+
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
