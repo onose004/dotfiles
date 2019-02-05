@@ -1,5 +1,5 @@
 "-------------------------------------------------------------------------------
-" neobundle setting
+" neobundle settings
 "-------------------------------------------------------------------------------
 
 if has('vim_starting')
@@ -23,6 +23,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\ }
 
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'mattn/emmet-vim'
@@ -31,6 +32,12 @@ NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'ujihisa/neco-look'
+NeoBundleLazy 'lambdalisue/vim-pyenv', {
+        \ 'depends': ['davidhalter/jedi-vim'],
+        \ 'autoload': {
+        \   'filetypes': ['python', 'python3'],
+        \ }}
+
 
 call neobundle#end()
 filetype plugin indent on
