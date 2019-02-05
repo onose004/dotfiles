@@ -7,25 +7,17 @@
 
 " BUNDLE {{{1
 
-if has('vim_starting')
-  if &compatible
-    set nocompatible
-  endif
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+if 0 | endif
+
+if &compatible
+  set nocompatible
 endif
 
-call neobundle#begin(expand('~/.vim/bundle'))
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-			\ 'build' : {
-			\     'windows' : 'tools\\update-dll-mingw',
-			\     'cygwin' : 'make -f make_cygwin.mak',
-			\     'mac' : 'make -f make_mac.mak',
-			\     'linux' : 'make',
-			\     'unix' : 'gmake',
-			\    },
-			\ }
 
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'davidhalter/jedi-vim'
@@ -37,11 +29,6 @@ NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'ujihisa/neco-look'
-NeoBundleLazy 'lambdalisue/vim-pyenv', {
-        \ 'depends': ['davidhalter/jedi-vim'],
-        \ 'autoload': {
-        \   'filetypes': ['python', 'python3'],
-        \ }}
 
 call neobundle#end()
 filetype plugin indent on
