@@ -21,11 +21,6 @@ eval "$(pyenv init -)"
 
 source ~/.profile
 
-# Export global variables
-while IFS= read -r line; do
-  export "$line"
-done < ~/dotfiles/var/username
-
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
 function is_screen_running() { [ ! -z "$STY" ]; }
@@ -91,3 +86,7 @@ tmux_automatically_attach_session
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+if [[ -f ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi
