@@ -5,21 +5,8 @@
 # /___|___/_| |_|_|  \___|
 #
 
-alias git-s='git status'
-alias git-u='git add -u'
-alias git-us='git-u ; git-s'
-alias git-m='git commit -m'
-alias git-g='git log --graph'
-alias lla='ll -a'
-alias heic2jpg='for i in `ls *.heic *.HEIC`; do; sips --setProperty format jpeg $i --out ${i%.*}.jpg; done; rm *.heic'
 
 export LC_ALL=ja_JP.UTF-8
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-source ~/.profile
 
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
@@ -83,8 +70,18 @@ function tmux_automatically_attach_session()
 }
 tmux_automatically_attach_session
 
+#-------------------------------------------------------------------------------
+# tools
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+#ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 if [[ -f ~/.zshrc.local ]]; then
