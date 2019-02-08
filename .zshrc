@@ -84,6 +84,8 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 #ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
+source ~/.zsh/.alias.zsh
+
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
