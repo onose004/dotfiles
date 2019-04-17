@@ -123,3 +123,9 @@ case $TERM in
 esac
 
 # export locale="ja_JP.EUC-JP"
+curl_add_ip(){
+    ENDPOINT="http://127.0.0.1:22999/api/add_whitelist_ip"
+    DATA="ip="$1
+    curl $ENDPOINT -X POST -d $DATA
+}
+alias lpm_whitelist_ip='curl_add_ip'

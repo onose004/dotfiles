@@ -29,10 +29,49 @@ NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'ujihisa/neco-look'
+NeoBundle 'othree/yajs.vim'
+NeoBundle 'maxmellon/vim-jsx-pretty'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'othree/es.next.syntax.vim'
 
 call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
+
+" }}}1
+
+" VIEW {{{1
+
+set mouse=a
+set synmaxcol=320
+set hlsearch
+set number
+syntax on
+set colorcolumn=80
+set cursorline
+autocmd! FileType markdown hi! def link markdownItalic Label
+
+if has('conceal')
+  set conceallevel=0 concealcursor=
+endif
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set smartindent
+
+colorscheme mojave
+let g:lightline = {'colorscheme': 'mojave'}
+
+let g:php_sql_query           = 1
+let g:php_baselib             = 1
+let g:php_htmlInStrings       = 1
+let g:php_noShortTags         = 1
+let g:php_parent_error_close  = 1
+
+autocmd FileType php,ctp :set dictionary=~/.vim/dict/php.dict
 
 " }}}1
 
@@ -70,39 +109,5 @@ autocmd BufRead,BufNewFile *.php set filetype=html
 
 " }}}1
 "
-" VIEW {{{1
-
-set mouse=a
-set synmaxcol=320
-set hlsearch
-set number
-syntax on
-set colorcolumn=80
-set cursorline
-autocmd! FileType markdown hi! def link markdownItalic Label
-
-if has('conceal')
-  set conceallevel=0 concealcursor=
-endif
-
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set autoindent
-set smartindent
-
-colorscheme mojave
-let g:lightline = {'colorscheme': 'mojave'}
-
-let g:php_sql_query           = 1
-let g:php_baselib             = 1
-let g:php_htmlInStrings       = 1
-let g:php_noShortTags         = 1
-let g:php_parent_error_close  = 1
-
-autocmd FileType php,ctp :set dictionary=~/.vim/dict/php.dict
-
-" }}}1
 
 " vim: fdm=marker ts=2 sts=2 sw=2:
