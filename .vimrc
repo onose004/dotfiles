@@ -79,6 +79,7 @@ set number
 syntax on
 set colorcolumn=80
 set cursorline
+autocmd! FileType markdown hi! def link markdownItalic Label
 
 if has('conceal')
   set conceallevel=0 concealcursor=
