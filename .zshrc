@@ -74,9 +74,9 @@ tmux_automatically_attach_session
 # tools
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 # zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -89,3 +89,11 @@ source ~/.zsh/.alias.zsh
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
+
+# luminati
+curl_add_ip(){
+    ENDPOINT="http://127.0.0.1:22999/api/add_whitelist_ip"
+    DATA="ip="$1
+    curl $ENDPOINT -X POST -d $DATA
+}
+alias lpm_whitelist_ip='curl_add_ip'
