@@ -1,20 +1,23 @@
-dotfiles
+Dotfiles
 ===
 
-## Installation
+## Pre-installation
+
+Get [Terminal theme](https://github.com/arcticicestudio/nord-terminal-app)
+
+## Install
 
 `make install`
 
-## formula
+## What's included?
 
-### Common
+### Themes
+- [Nord](https://www.nordtheme.com/) for `Terminal.app`, `vim` and `tmux`
+- [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
 
-- npm
-- pyenv
-- vim
-- git
-- zsh
+### Multiplexer
+- Tmux
 
-### MacOS
-
-- brew
+### Shell
+- `zsh` for shell
+- `zprezto` for zsh tweaking

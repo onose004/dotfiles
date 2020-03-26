@@ -20,19 +20,12 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'onose004/vim-mojave'
-NeoBundle 'Quramy/tsuquyomi'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'ujihisa/neco-look'
-NeoBundle 'othree/yajs.vim'
 NeoBundle 'maxmellon/vim-jsx-pretty'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'othree/es.next.syntax.vim'
+NeoBundle 'arcticicestudio/nord-vim'
 
 call neobundle#end()
 filetype plugin indent on
@@ -62,8 +55,8 @@ set softtabstop=2
 set autoindent
 set smartindent
 
-colorscheme mojave
-let g:lightline = {'colorscheme': 'mojave'}
+colorscheme nord 
+let g:lightline = {'colorscheme': 'nord'}
 
 let g:php_sql_query           = 1
 let g:php_baselib             = 1
@@ -85,11 +78,16 @@ set fileformats=unix,dos,mac
 "
 " MAP {{{1
 
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+map <F2> :.w !pbcopy<CR><CR>
+map <F8> :let mycurf=expand("<cfile>")<cr><c-w> w :execute("e ".mycurf)<cr><c-w>p
+
+
 
 " }}}1
 "
 " OPTION {{{1
+
+
 
 " enable backspace
 set backspace=indent,eol,start
