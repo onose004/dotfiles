@@ -75,7 +75,7 @@ set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set fileformats=unix,dos,mac
 
 " }}}1
-"
+
 " MAP {{{1
 
 map <F2> :.w !pbcopy<CR><CR>
@@ -84,10 +84,8 @@ map <F8> :let mycurf=expand("<cfile>")<cr><c-w> w :execute("e ".mycurf)<cr><c-w>
 
 
 " }}}1
-"
+
 " OPTION {{{1
-
-
 
 " enable backspace
 set backspace=indent,eol,start
@@ -95,8 +93,6 @@ set backspace=indent,eol,start
 " clipboard
 set clipboard=unnamed,autoselect
 
-" 不可視ファイルを表示する
-let NERDTreeShowHidden = 1
 
 " lightline
 set laststatus=2
@@ -105,7 +101,8 @@ set noshowmode
 
 autocmd BufRead,BufNewFile *.php set filetype=html
 
+set fdm=marker
+
 " }}}1
-"
 
 " vim: fdm=marker ts=2 sts=2 sw=2:

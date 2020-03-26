@@ -13,7 +13,7 @@ Get [Terminal theme](https://github.com/arcticicestudio/nord-terminal-app)
 
 ### Themes
 - [Nord](https://www.nordtheme.com/) for `Terminal.app`, `vim` and `tmux`
-- [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
+- [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) for font
 
 ### Multiplexer
 - Tmux
