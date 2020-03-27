@@ -1,6 +1,8 @@
 Ryosuke's Dotfiles
 ===
 
+![](./sample/terminal.png)
+
 ## Environment
 
 Scripts are tested on following:

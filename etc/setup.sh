@@ -1,9 +1,17 @@
 #!/bin/bash
 
+echo "
+__        __   _                          _
+\ \      / /__| | ___ ___  _ __ ___   ___| |
+ \ \ /\ / / _ \ |/ __/ _ \| '_ ' _ \ / _ \ |
+  \ V  V /  __/ | (_| (_) | | | | | |  __/_|
+   \_/\_/ \___|_|\___\___/|_| |_| |_|\___(_)
+"
+
 # ------------------------------------------------------------------------------
 # VARIABLES
 
-FORMULA="git tmux zsh vim make curl"
+FORMULA="git tmux zsh vim make curl tree"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   source /etc/os-release
