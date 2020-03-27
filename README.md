@@ -1,4 +1,4 @@
-Dotfiles
+Ryosuke's Dotfiles
 ===
 
 ## Environment
@@ -6,6 +6,8 @@ Dotfiles
 Scripts are tested on following:
 
 - Ubuntu 16.04
+- CentOS 7
+- Raspbian Stretch
 
 ## Pre-installation
 

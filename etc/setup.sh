@@ -6,10 +6,12 @@
 FORMULA="git tmux zsh vim make curl"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  # Ubuntu 16.04 
+  source /etc/os-release
+  [[ "$NAME" == "Ubuntu" ]] && APT=apt-get
+  [[ "$NAME" == "CentOS Linux" ]] && APT=yum
+elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
   APT=apt-get
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  # MacOS
   APT=brew
 fi
 
@@ -28,7 +30,7 @@ fi
 # ------------------------------------------------------------------------------
 # UPDATE
 
-$APT update
+$APT update -y
 
 # ------------------------------------------------------------------------------
 # INSTALL FORMULA
@@ -44,7 +46,7 @@ chsh -s `which zsh`
 # ------------------------------------------------------------------------------
 # INSTALL DOTFILES
 
-# git clone https://github.com/onose004/dotfiles $HOME/dotfiles
+git clone https://github.com/onose004/dotfiles $HOME/dotfiles
 cd $HOME/dotfiles
 make install
 
