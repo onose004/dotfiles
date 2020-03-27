@@ -18,3 +18,6 @@ clean: ## Remove the dot files
 
 install: deploy init
 	@exec $$SHELL
+
+update:
+	echo "update"

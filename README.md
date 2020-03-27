@@ -35,3 +35,10 @@ exec zsh -l
 ### Shell
 - `zsh` for shell
 - `zprezto` for zsh tweaking
+
+### Update
+
+```
+cd $HOME/dotfiles
+git pull
+```
