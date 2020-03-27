@@ -24,29 +24,29 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   defaults write com.apple.finder CreateDesktop -boolean false
 
   xcode-select --install
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  ! brew -v && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # ------------------------------------------------------------------------------
-# UPDATE
+# UPDATE AND INSTALL FORMULA
 
-$APT update -y
-
-# ------------------------------------------------------------------------------
-# INSTALL FORMULA
-
-$APT install -y $FORMULA
-
+if [[ "$APT" == "brew" ]]; then
+  $APT update
+  $APT install $FORMULA
+else
+  $APT update -y
+  $APT install -y $FORMULA
+fi
 
 # ------------------------------------------------------------------------------
 # POST-INSTALL
 
-chsh -s `which zsh`
+[[ ! `basename $SHELL` == "zsh" ]] && chsh -s `which zsh`
 
 # ------------------------------------------------------------------------------
 # INSTALL DOTFILES
 
-git clone https://github.com/onose004/dotfiles $HOME/dotfiles
+[[ ! -d $HOME/dotfiles ]] && git clone https://github.com/onose004/dotfiles $HOME/dotfiles
 cd $HOME/dotfiles
 make install
 
