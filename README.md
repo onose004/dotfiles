@@ -23,6 +23,13 @@ bash -c "$(curl -L https://raw.githubusercontent.com/onose004/dotfiles/master/et
 exec zsh -l
 ```
 
+## Update
+
+```
+cd $HOME/dotfiles
+git pull
+```
+
 ## What's included?
 
 ### Themes
@@ -36,9 +43,3 @@ exec zsh -l
 - `zsh` for shell
 - `zprezto` for zsh tweaking
 
-## Update
-
-```
-cd $HOME/dotfiles
-git pull
-```
