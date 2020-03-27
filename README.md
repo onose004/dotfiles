@@ -36,7 +36,7 @@ exec zsh -l
 - `zsh` for shell
 - `zprezto` for zsh tweaking
 
-### Update
+## Update
 
 ```
 cd $HOME/dotfiles
