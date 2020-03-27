@@ -41,7 +41,6 @@ set hlsearch
 set number
 syntax on
 set colorcolumn=80
-set cursorline
 autocmd! FileType markdown hi! def link markdownItalic Label
 
 if has('conceal')
@@ -55,7 +54,7 @@ set softtabstop=2
 set autoindent
 set smartindent
 
-colorscheme nord 
+silent! colorscheme nord 
 let g:lightline = {'colorscheme': 'nord'}
 
 let g:php_sql_query           = 1

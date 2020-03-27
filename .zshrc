@@ -5,7 +5,7 @@
 # /___|___/_| |_|_|  \___|
 #
 
-export LC_ALL=ja_JP.UTF-8
+# export LC_ALL=ja_JP.UTF-8
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -14,9 +14,6 @@ eval "$(pyenv init -)"
 
 # zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-#ruby
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 source $HOME/.zsh/.alias.zsh
 

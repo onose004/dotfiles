@@ -1,13 +1,24 @@
 Dotfiles
 ===
 
+## Environment
+
+Scripts are tested on following:
+
+- Ubuntu 16.04
+
 ## Pre-installation
 
 Get [Terminal theme](https://github.com/arcticicestudio/nord-terminal-app)
 
-## Install
+## Setup
 
-`make install`
+```
+make install
+
+# enable zsh
+exec zsh -l
+```
 
 ## What's included?
 
