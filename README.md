@@ -42,4 +42,5 @@ git pull
 ### Shell
 - `zsh` for shell
 - `zprezto` for zsh tweaking
+- Make local zsh config by adding `$HOME/.zshrc.local`
 
