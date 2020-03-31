@@ -4,7 +4,7 @@ EXCLUSIONS := .DS_Store .git *.bck *.swp
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 
 init: ## Setup environment settings
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/setup/init.sh
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/install.sh
 
 list: ## Show dot files in this repo
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
@@ -18,3 +18,6 @@ clean: ## Remove the dot files
 
 install: deploy init
 	@exec $$SHELL
+
+update:
+	echo "update"
