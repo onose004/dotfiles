@@ -17,6 +17,7 @@ Scripts are tested on following:
 ### Pre-installation
 
 Get [Terminal theme](https://github.com/arcticicestudio/nord-terminal-app)
+Get [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
 
 ### Install
 ```
@@ -41,10 +42,12 @@ git pull
 - [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) for font
 
 ### Multiplexer
-- Tmux
+- Tmux 3.0a
 
 ### Shell
 - `zsh` for shell
 - `zprezto` for zsh tweaking
-- Make local zsh config by adding `$HOME/.zshrc.local`
+- Local zsh config by adding `$HOME/.zshrc.local`
 
+### Editor
+- `vim 8.2`
