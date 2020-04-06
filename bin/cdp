@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 
 i=`ls | head -n 1`
 tmux send-keys "cd $i"

@@ -16,5 +16,6 @@ eval "$(pyenv init -)"
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 source $HOME/.zsh/.alias.zsh
+export PATH="$HOME/dotfiles/bin:${PATH}"
 
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
