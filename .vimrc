@@ -19,13 +19,15 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" util
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'arcticicestudio/nord-vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'onose004/vim-mojave'
-NeoBundle 'maxmellon/vim-jsx-pretty'
-NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'arcticicestudio/nord-vim'
+
+" ts/js
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'peitalin/vim-jsx-typescript'
 
 call neobundle#end()
 filetype plugin indent on
@@ -80,6 +82,8 @@ set fileformats=unix,dos,mac
 map <F2> :.w !pbcopy<CR><CR>
 map <F8> :let mycurf=expand("<cfile>")<cr><c-w> w :execute("e ".mycurf)<cr><c-w>p
 
+command Bd bp|bd #
+
 
 
 " }}}1
@@ -101,6 +105,10 @@ set noshowmode
 autocmd BufRead,BufNewFile *.php set filetype=html
 
 set fdm=marker
+
+" files
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+
 
 " }}}1
 
