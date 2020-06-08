@@ -24,7 +24,7 @@ ROOT="$HOME/dotfiles"
 DOT_REPO="https://github.com/onose004/dotfiles"
 
 # Fundamentals
-FORMULA="git tmux zsh vim make curl bats"
+FORMULA="git tmux zsh vim make curl bats-core"
 
 # APT={package manager command}
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -55,23 +55,23 @@ fi
 # ------------------------------------------------------------------------------
 # UPDATE AND INSTALL FORMULA
 
+if [[ "$APT" == "brew" ]]; then
+  $APT update
+else
+  $APT update -y
+fi
+
 for package in $FORMULA
 do
   if !(type "$package" > /dev/null 2>&1); then
       if [[ "$APT" == "brew" ]]; then
         $APT install $package
       else
-        $APT update -y
         $APT install -y $package
       fi
   fi
 done
 
-if [[ "$APT" == "brew" ]]; then
-  $APT update
-else
-  $APT update -y
-fi
 
 
 # ------------------------------------------------------------------------------
