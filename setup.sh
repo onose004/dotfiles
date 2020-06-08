@@ -24,7 +24,7 @@ ROOT="$HOME/dotfiles"
 DOT_REPO="https://github.com/onose004/dotfiles"
 
 # Fundamentals
-FORMULA="git tmux zsh vim make curl bats-core"
+FORMULA="git tmux zsh vim make curl bats"
 
 # APT={package manager command}
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
