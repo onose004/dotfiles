@@ -11,7 +11,6 @@ Scripts are tested on following:
 - CentOS 7
 - Raspbian Stretch
 
-
 ## Setup
 
 ### Pre-installation
@@ -22,7 +21,7 @@ Get [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
 ### Install
 ```
 # apt-get update; apt-get install -y curl
-bash -c "$(curl -L https://raw.githubusercontent.com/onose004/dotfiles/master/etc/setup.sh)"
+bash -c "$(curl -L https://raw.githubusercontent.com/onose004/dotfiles/master/setup.sh)"
 
 # enable zsh
 exec zsh -l
@@ -33,6 +32,13 @@ exec zsh -l
 ```
 cd $HOME/dotfiles
 git pull
+make update
+```
+
+### Test
+
+```
+make test
 ```
 
 ## What's included?
@@ -51,3 +57,6 @@ git pull
 
 ### Editor
 - `vim 8.2`
+
+### Testing
+- Testing using `bats`

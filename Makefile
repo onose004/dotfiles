@@ -20,4 +20,7 @@ install: deploy init
 	@exec $$SHELL
 
 update:
-	echo "update"
+	echo "update is not implemented"
+
+test:
+	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests/setup.bats"
