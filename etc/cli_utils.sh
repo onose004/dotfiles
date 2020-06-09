@@ -34,8 +34,14 @@ hash bats || {
 
 # fzf
 if [[ ! -d $HOME/.fzf ]]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  no | $HOME/.fzf/install
+  git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+  yes | $HOME/.fzf/install
+else
+  pushd $HOME/.fzf
+  [ "`git pull`" = "Already up to date." ] || {
+    yes | ./install
+  }
+  popd
 fi
 
 pkg_install tree
