@@ -38,7 +38,7 @@ if [[ ! -d $HOME/.fzf ]]; then
   no | $HOME/.fzf/install
 fi
 
-pkg_install tree figlet
+pkg_install tree
 
 # ------------------------------------------------------------------------------
 exit 0
