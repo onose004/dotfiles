@@ -86,8 +86,13 @@ done
 # ------------------------------------------------------------------------------
 # CLONE & INSTALL DOTFILES
 
-[[ ! -d $HOME/dotfiles ]] && git clone $DOT_REPO $HOME/dotfiles
-cd $HOME/dotfiles
+if [[ ! -d $HOME/dotfiles ]]; then
+  git clone $DOT_REPO $HOME/dotfiles
+  cd $HOME/dotfiles
+else
+  cd $HOME/dotfiles
+  git pull
+fi
 make deploy || exit 1  # Create symlinks to home directory
 source $HOME/.bashrc
 make install || exit 1 # Install plugins/utilities/applications
