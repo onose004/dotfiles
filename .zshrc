@@ -16,6 +16,7 @@
 
 # zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+PURE_PROMPT_SYMBOL="$"
 
 source $HOME/.zsh/.alias.zsh
 export PATH="$HOME/dotfiles/bin:${PATH}"
