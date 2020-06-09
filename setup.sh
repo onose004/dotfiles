@@ -95,4 +95,5 @@ else
 fi
 make deploy || exit 1  # Create symlinks to home directory
 source $HOME/.bashrc
+source $HOME/.zshrc
 make install || exit 1 # Install plugins/utilities/applications
