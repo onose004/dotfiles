@@ -1,0 +1,33 @@
+#!/bin/bash
+
+FORMULA="$@"
+echo "pkg-install: $FORMULA"
+
+# APT={package manager command}
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  # Ubuntu / CentOS
+  source /etc/os-release
+  [[ "$NAME" == "Ubuntu" ]] && APT=apt-get
+  [[ "$NAME" == "CentOS Linux" ]] && APT=yum
+elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
+  # Raspbian
+  APT=apt-get
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # MacOS
+  APT=brew
+fi
+
+for package in $FORMULA
+do
+  hash "$package" || {
+    if [[ "$APT" == "brew" ]]; then
+      $APT install $package
+    else
+      $APT install -y $package
+    fi
+  }
+  hash "$package" || {
+    >&2 echo "Failed to install $package (T_T)"
+    exit 1
+  }
+done

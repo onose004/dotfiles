@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This command installs dotfiles in a clean environment. The first step is to
+# This command installs dotfiles into a clean environment. The first step is to
 # installs the commands needed to install dotfiles. The next step is to clone
 # dotfiles and deploy the configuration files and install plugins.
 # It is assumed that this script by itself will accomplish its purpose.
@@ -24,7 +24,7 @@ ROOT="$HOME/dotfiles"
 DOT_REPO="https://github.com/onose004/dotfiles"
 
 # Fundamentals
-FORMULA="git tmux zsh vim make curl bats"
+FORMULA="git tmux zsh vim make curl"
 
 # APT={package manager command}
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -41,19 +41,21 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # ------------------------------------------------------------------------------
-# PRE-INSTALL
+# PRE-INSTALL FOR MACOS
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+[[ "$OSTYPE" == "darwin"* ]] && {
   # settings
   defaults write com.apple.finder AppleShowAllFiles TRUE
   defaults write com.apple.finder CreateDesktop -boolean false
 
   xcode-select --install
   ! brew -v && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+}
 
 # ------------------------------------------------------------------------------
-# UPDATE AND INSTALL FORMULA
+# UPDATE AND INSTALL FUNDAMENTALS
+
+hash $APT || exit 1
 
 if [[ "$APT" == "brew" ]]; then
   $APT update
@@ -63,16 +65,18 @@ fi
 
 for package in $FORMULA
 do
-  if !(type "$package" > /dev/null 2>&1); then
-      if [[ "$APT" == "brew" ]]; then
-        $APT install $package
-      else
-        $APT install -y $package
-      fi
-  fi
+  hash "$package" || {
+    if [[ "$APT" == "brew" ]]; then
+      $APT install $package
+    else
+      $APT install -y $package
+    fi
+  }
+  hash "$package" || {
+    >&2 echo "Failed to install $package (T_T)"
+    exit 1
+  }
 done
-
-
 
 # ------------------------------------------------------------------------------
 # POST-INSTALL
@@ -80,16 +84,10 @@ done
 [[ ! `basename $SHELL` == "zsh" ]] && chsh -s `which zsh`
 
 # ------------------------------------------------------------------------------
-# CLONE DOTFILES
+# CLONE & INSTALL DOTFILES
 
 [[ ! -d $HOME/dotfiles ]] && git clone $DOT_REPO $HOME/dotfiles
 cd $HOME/dotfiles
-make install
-
-# ------------------------------------------------------------------------------
-# TEST
-
-bats $HOME/dotfiles/tests/unit.*.bats
-test_ret=$?
-
-exit $test_ret
+make deploy || exit 1  # Create symlinks to home directory
+source $HOME/.bashrc
+make install || exit 1 # Install plugins/utilities/applications

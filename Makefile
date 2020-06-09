@@ -1,10 +1,13 @@
 DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 CANDIDATES := $(wildcard .??*)
-EXCLUSIONS := .DS_Store .git *.bck *.swp
+EXCLUSIONS := .DS_Store .git *.bck .*.swp
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 
-init: ## Setup environment settings
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/install.sh
+setup: ## Setup environment settings
+	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/setup.sh
+
+install: ## Install plugins/utilities/applications
+	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/etc/install.sh
 
 list: ## Show dot files in this repo
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
@@ -16,11 +19,8 @@ clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
 
-install: deploy init
+update: setup
 	@exec $$SHELL
 
-update:
-	echo "update is not implemented"
-
 test:
-	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests/setup.bats"
+	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests/setup.fundamentals.bats"

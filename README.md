@@ -60,3 +60,13 @@ make test
 
 ### Testing
 - Testing using `bats`
+
+## Repo structure
+
+* `Makefile`: recipe for script execution
+* `README.md`
+* `bin/`: custom utility commands
+* `etc/`: configuration files and scripts for plugins/utilities/applications
+* `sample/`: sample image
+* `setup.sh`: script for installing and updating dotfiles
+* `tests/`: bats format test scripts
