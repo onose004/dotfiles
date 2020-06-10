@@ -84,7 +84,10 @@ done
 
 if [[ ! -d $HOME/dotfiles ]]; then
   git clone $DOT_REPO $HOME/dotfiles
+else
   cd $HOME/dotfiles
+  git pull
 fi
+cd $HOME/dotfiles
 
 make update || exit 1

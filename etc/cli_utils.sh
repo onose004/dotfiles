@@ -7,11 +7,10 @@
 # tpm for tmux
 if [[ ! -d $HOME/.tmux/plugins ]]; then
   # install
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  ~/.tmux/plugins/tpm/bin/install_plugins
+  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 else
   # update
-  ~/.tmux/plugins/tpm/bin/update_plugins
+  $HOME/.tmux/plugins/tpm/bin/update_plugins
 fi
 
 # neobundle for vim
@@ -52,4 +51,6 @@ else
   }
 fi
 
-pkg_install tree
+$HOME/dotfiles/bin/pkg_install tree
+
+exit 0
