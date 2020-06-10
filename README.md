@@ -5,20 +5,29 @@ Ryosuke's Dotfiles
 
 ## Environment
 
-Scripts are tested on following:
+Scripts are tested on:
 
 - Ubuntu 16.04
 - CentOS 7
 - Raspbian Stretch
 
+Partly tested on:
+
+- MacOS Catalina
+
 ## Setup
 
-### Pre-installation
+### Pre-installation (recommended)
 
-Get [Terminal theme](https://github.com/arcticicestudio/nord-terminal-app)
-Get [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
+- [Nord Theme](https://github.com/arcticicestudio/nord-terminal-app) for Terminal.app
+- [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) for font
 
 ### Install
+
+The following script installs basic part of this dotfiles and their plugins
+end-to-end in a clean environment.
+It also includes an OS update.
+
 ```
 # apt-get update; apt-get install -y curl
 bash -c "$(curl -L https://raw.githubusercontent.com/onose004/dotfiles/master/setup.sh)"
@@ -29,17 +38,19 @@ exec zsh -l
 
 ### Update
 
+The update script updates dotfiles and their plugins.
+It does not include an OS update.
+
 ```
 cd $HOME/dotfiles
-git pull
 make update
 ```
 
 ### Test
 
-```
-make test
-```
+- `make test` to verify plugins/utilities/apps installed by this repo.
+- `etc/verify_dotfiles.sh` to verify all supported environments.
+
 
 ## What's included?
 
@@ -48,7 +59,7 @@ make test
 - [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) for font
 
 ### Multiplexer
-- Tmux 3.0a
+- `tmux`
 
 ### Shell
 - `zsh` for shell
@@ -56,17 +67,18 @@ make test
 - Local zsh config by adding `$HOME/.zshrc.local`
 
 ### Editor
-- `vim 8.2`
+- `vim`
 
-### Testing
-- Testing using `bats`
+### Utils
+- `bats` for testing
+- `fzf` for interactive filter
 
 ## Repo structure
 
 * `bin/`: custom utility commands
 * `etc/`: configuration files and scripts for plugins/utilities/applications
 * `tests/`: bats format test scripts
-* `Makefile`: recipe for script execution
-* `sample/`: sample image
+* `sample/`: screenshot images
+* `Makefile`: a recipe for script execution
 * `README.md`
-* `setup.sh`: script for installing and updating dotfiles
+* `setup.sh`: a script for end-to-end installation
