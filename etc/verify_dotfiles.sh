@@ -8,6 +8,5 @@ for di in $docker_images; do
   docker run -v $HOME/dotfiles/setup.sh:/setup.sh -it --rm $di /setup.sh || exit 1
 done
 
-"All passed: $docker_images"
-
+echo "All passed: $docker_images"
 exit 0
