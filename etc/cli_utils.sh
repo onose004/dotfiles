@@ -5,7 +5,14 @@
 # PLUGIN MANAGER
 
 # tpm for tmux
-[[ ! -d $HOME/.tmux/plugins ]] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [[ ! -d $HOME/.tmux/plugins ]]; then
+  # install
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  ~/.tmux/plugins/tpm/bin/install_plugins
+else
+  # update
+  ~/.tmux/plugins/tpm/bin/update_plugins
+fi
 
 # neobundle for vim
 [[ ! -d $HOME/.vim/bundle ]] && git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
@@ -16,8 +23,10 @@ vim +NeoBundleInstall +qall
 
 # zprezto
 if [[ ! -d $HOME/.zprezto ]]; then
+  # install
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 else
+  # update
   pushd $ZPREZTODIR
   git pull
   git submodule update --init --recursive
@@ -34,9 +43,11 @@ hash bats || {
 
 # fzf
 if [[ ! -d $HOME/.fzf ]]; then
+  # install
   git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
   yes | $HOME/.fzf/install
 else
+  # update
   pushd $HOME/.fzf
   [ "`git pull`" = "Already up to date." ] || {
     yes | ./install

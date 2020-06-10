@@ -44,10 +44,6 @@ fi
 # PRE-INSTALL FOR MACOS
 
 [[ "$OSTYPE" == "darwin"* ]] && {
-  # settings
-  defaults write com.apple.finder AppleShowAllFiles TRUE
-  defaults write com.apple.finder CreateDesktop -boolean false
-
   xcode-select --install
   ! brew -v && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }

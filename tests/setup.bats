@@ -1,16 +1,42 @@
 #!/usr/bin/env bats
 
-@test "Ubuntu 16.04" {
-  run docker run -v $HOME/dotfiles:/root/dotfiles -it --rm ubuntu:16.04 /bin/bash /root/dotfiles/setup.sh
+# setup.bats
+# verifies installation by setup.sh
+
+@test "git installed" {
+  run type git
   [ "$status" -eq 0 ]
 }
 
-@test "Raspbian Stretch" {
-  run docker run -v $HOME/dotfiles:/root/dotfiles -it --rm raspbian/stretch /bin/bash /root/dotfiles/setup.sh
+@test "tmux installed" {
+  run type tmux
   [ "$status" -eq 0 ]
 }
 
-@test "CentOS 7" {
-  run docker run -v $HOME/dotfiles:/root/dotfiles -it --rm centos:7 /bin/bash /root/dotfiles/setup.sh
+@test "zsh installed" {
+  run type zsh
   [ "$status" -eq 0 ]
+}
+
+@test "vim installed" {
+  run type vim
+  [ "$status" -eq 0 ]
+}
+
+@test "make installed" {
+  run type make
+  [ "$status" -eq 0 ]
+}
+
+@test "curl installed" {
+  run type curl 
+  [ "$status" -eq 0 ]
+}
+
+@test "verify dotfiles" {
+  # check diff with origin/master 
+  git fetch origin
+  run git diff origin/master
+  [ "$status" -eq 0 ]
+  [ "${lines[0]}" = "" ]
 }

@@ -23,4 +23,4 @@ update: setup
 	@exec $$SHELL
 
 test:
-	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests/setup.fundamentals.bats"
+	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests"
