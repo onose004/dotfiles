@@ -1,8 +1,9 @@
 #!/bin/bash
 # update.sh
 
-cd $HOME/dotfiles || exit 1
 
+echo "Updating dotfiles..."
+cd $HOME/dotfiles || exit 1
 git pull origin master
 
 make deploy || exit 1  # Create symlinks to home directory
