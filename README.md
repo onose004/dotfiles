@@ -1,6 +1,8 @@
 Ryosuke's Dotfiles
 ===
 
+My dotfiles growing like bonsai trees.
+
 ![](./sample/terminal.png)
 
 ## Environment
