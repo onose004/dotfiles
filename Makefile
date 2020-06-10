@@ -19,8 +19,8 @@ clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
 
-update: setup
-	@exec $$SHELL
+update:
+	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/etc/update.sh
 
 test:
 	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests"

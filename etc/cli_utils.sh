@@ -27,18 +27,16 @@ if [[ ! -d $HOME/.zprezto ]]; then
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 else
   # update
-  pushd $ZPREZTODIR
+  cd $ZPREZTODIR
   git pull
   git submodule update --init --recursive
-  popd
 fi
 
 # bats-core for testing
 hash bats || {
   git clone https://github.com/bats-core/bats-core.git /tmp/bats-core
-  pushd /tmp/bats-core
+  cd /tmp/bats-core
   ./install.sh /usr/local
-  popd
 }
 
 # fzf
@@ -48,14 +46,10 @@ if [[ ! -d $HOME/.fzf ]]; then
   yes | $HOME/.fzf/install
 else
   # update
-  pushd $HOME/.fzf
+  cd $HOME/.fzf
   [ "`git pull`" = "Already up to date." ] || {
     yes | ./install
   }
-  popd
 fi
 
 pkg_install tree
-
-# ------------------------------------------------------------------------------
-exit 0

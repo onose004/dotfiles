@@ -85,11 +85,6 @@ done
 if [[ ! -d $HOME/dotfiles ]]; then
   git clone $DOT_REPO $HOME/dotfiles
   cd $HOME/dotfiles
-else
-  cd $HOME/dotfiles
-  git pull
 fi
-make deploy || exit 1  # Create symlinks to home directory
-source $HOME/.bashrc
-source $HOME/.zshrc
-make install || exit 1 # Install plugins/utilities/applications
+
+make update || exit 1
