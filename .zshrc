@@ -24,3 +24,9 @@ export PATH="$HOME/dotfiles/bin:${PATH}"
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_COMPLETION_TRIGGER=','
+[ -e ~/.zsh/completions/docker-fzf.zsh ] && source ~/.zsh/completions/docker-fzf.zsh
+
+
+export GOPATH=~/.go
+export PATH=$GOPATH/bin:$PATH

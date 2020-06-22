@@ -28,6 +28,7 @@ NeoBundle 'mattn/emmet-vim'
 " ts/js
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'peitalin/vim-jsx-typescript'
+NeoBundle 'maxmellon/vim-jsx-pretty'
 
 call neobundle#end()
 filetype plugin indent on
