@@ -7,6 +7,9 @@ alias git-g='git log --graph'
 alias git-d='git diff'
 alias git-dh='git diff HEAD'
 
+alias glg='git log --graph --decorate --pretty=oneline --abbrev-commit'
+alias ghb='hub browse'
+
 # ls
 alias lla='ll -a'
 

@@ -58,6 +58,6 @@ else
   popd
 fi
 
-$HOME/dotfiles/bin/pkg_install tree
+$HOME/dotfiles/bin/pkg_install tree hub
 
 exit 0
