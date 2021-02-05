@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# Ryosuke Onose <dev@onose.ws>
+
+import argparse
+import logging
+
+logging.getLogger().setLevel(logging.INFO)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input", type=str, required=True)
+    parser.add_argument("--out", type=str, required=True)
+    args = parser.parse_args()

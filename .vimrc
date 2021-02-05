@@ -5,34 +5,51 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 
-" BUNDLE {{{1
-
-if 0 | endif
-
-if &compatible
+if !&compatible
   set nocompatible
 endif
 
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+" BUNDLE {{{1
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+augroup MyAutoCmd
+  autocmd!
+augroup END
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+" set plugin path
+let s:dein_dir = expand('~/.cache/dein')
+" set dein repo path
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" util
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'arcticicestudio/nord-vim'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'mattn/emmet-vim'
+" clone dein.vim
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-" ts/js
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'peitalin/vim-jsx-typescript'
-NeoBundle 'maxmellon/vim-jsx-pretty'
+" dein settings
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-call neobundle#end()
-filetype plugin indent on
-NeoBundleCheck
+  " toml
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+  " cache dein
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+" check uninstall
+if dein#check_install()
+  call dein#install()
+endif
+
 
 " }}}1
 
@@ -46,27 +63,16 @@ syntax on
 set colorcolumn=80
 autocmd! FileType markdown hi! def link markdownItalic Label
 
-if has('conceal')
-  set conceallevel=0 concealcursor=
-endif
+setl conceallevel=0 
 
 set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype sh setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
 set smartindent
-
-silent! colorscheme nord 
-let g:lightline = {'colorscheme': 'nord'}
-
-let g:php_sql_query           = 1
-let g:php_baselib             = 1
-let g:php_htmlInStrings       = 1
-let g:php_noShortTags         = 1
-let g:php_parent_error_close  = 1
-
-autocmd FileType php,ctp :set dictionary=~/.vim/dict/php.dict
 
 " }}}1
 
@@ -84,6 +90,9 @@ map <F2> :.w !pbcopy<CR><CR>
 map <F8> :let mycurf=expand("<cfile>")<cr><c-w> w :execute("e ".mycurf)<cr><c-w>p
 
 command Bd bp|bd #
+nnoremap <Space>s :source $HOME/.vimrc<CR>
+" nnoremap <silent>k<Space>w :<C-u>w<CR>
+nnoremap <Space><Space> <c-^>
 
 " copy to attached terminal using the yank(1) script:
 " https://github.com/sunaku/home/blob/master/bin/yank
@@ -97,11 +106,20 @@ function! Yank(text) abort
 endfunction
 noremap <silent> <Leader>y y:<C-U>call Yank(@0)<CR>
 
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
 
 
 " }}}1
 
 " OPTION {{{1
+
+autocmd BufNewFile *.py 0r $HOME/.vim/template/python.txt
+
+autocmd QuickFixCmdPost *grep* cwindow
+set ignorecase
+
 
 " enable backspace
 set backspace=indent,eol,start
@@ -120,8 +138,16 @@ autocmd BufRead,BufNewFile *.php set filetype=html
 set fdm=marker
 
 " files
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
+set backupcopy=yes
+
+" undo
+if has('persistent_undo')
+  let undo_path = expand('~/.vim/undo')
+  exe 'set undodir=' .. undo_path
+  set undofile
+endif
 
 " }}}1
 
