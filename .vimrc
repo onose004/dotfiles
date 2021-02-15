@@ -5,51 +5,40 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 
-if !&compatible
-  set nocompatible
-endif
 
 " BUNDLE {{{1
 
-augroup MyAutoCmd
-  autocmd!
-augroup END
-
-" set plugin path
-let s:dein_dir = expand('~/.cache/dein')
-" set dein repo path
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-" clone dein.vim
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
-" dein settings
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+" Required:
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
-  " toml
-  let g:rc_dir    = expand('~/.vim/rc')
-  let s:toml      = g:rc_dir . '/dein.toml'
-  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
-
-  " cache dein
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
+" Required:
+if dein#load_state('$HOME/.cache/dein')
+  call dein#begin('$HOME/.cache/dein')
+  call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#load_toml('$HOME/.vim/rc/dein.toml', {'lazy': 0})
+  call dein#load_toml('$HOME/.vim/rc/dein_lazy.toml', {'lazy': 1})
   call dein#end()
   call dein#save_state()
 endif
 
-" check uninstall
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
+let g:deoplete#enable_at_startup = 1
 
+
+
+"End dein Scripts-------------------------
 
 " }}}1
 
@@ -89,7 +78,7 @@ set fileformats=unix,dos,mac
 map <F2> :.w !pbcopy<CR><CR>
 map <F8> :let mycurf=expand("<cfile>")<cr><c-w> w :execute("e ".mycurf)<cr><c-w>p
 
-command Bd bp|bd #
+" command Bd bp|bd #
 nnoremap <Space>s :source $HOME/.vimrc<CR>
 " nnoremap <silent>k<Space>w :<C-u>w<CR>
 nnoremap <Space><Space> <c-^>
@@ -125,7 +114,7 @@ set ignorecase
 set backspace=indent,eol,start
 
 " clipboard
-set clipboard=unnamed,autoselect
+" set clipboard=unnamed,autoselect
 
 
 " lightline
@@ -145,7 +134,7 @@ set backupcopy=yes
 " undo
 if has('persistent_undo')
   let undo_path = expand('~/.vim/undo')
-  exe 'set undodir=' .. undo_path
+  " exe 'set undodir=' .. undo_path
   set undofile
 endif
 
