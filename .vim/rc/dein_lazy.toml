@@ -1,14 +1,14 @@
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-  let g:deoplete#enable_at_startup = 1
-'''
-
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-on_ft = 'python'
-hook_add = '''
-'''
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# hook_add = '''
+#   let g:deoplete#enable_at_startup = 1
+# '''
+# 
+# [[plugins]]
+# repo = 'zchee/deoplete-jedi'
+# on_ft = 'python'
+# hook_add = '''
+# '''
 # 
 # [[plugins]]
 # repo = 'roxma/nvim-yarp'
@@ -26,3 +26,24 @@ hook_add = '''
 # let g:jedi#completions_enabled = 0
 # let g:jedi#goto_command = "<Leader>d"
 # '''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev="release"
+hook_add = '''
+" GoTo code navigation.
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+'''

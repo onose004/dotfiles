@@ -47,14 +47,16 @@ repo = 'mattn/emmet-vim'
 #   " custom message and sign
 #   let g:ale_echo_msg_error_str = '[ERROR]'
 #   let g:ale_echo_msg_warning_str = '[WARNING]'
-#   let g:ale_sign_error = "\uf41b"
-#   let g:ale_sign_warning = "\uf420"
+#   let g:ale_sign_error = "X"
+#   let g:ale_sign_warning = "!"
 #   " linter setting
 #   let g:ale_linters = {
 #     \ 'python': ['flake8'],
 #     \ 'sh': ['shellcheck'],
 #     \ }
 #   let g:ale_python_flake8_args="--max-line-length=120"
+#   let g:ale_completion_enabled = 0
+#   let g:ale_sh_shellcheck_options = '-e SC1090,SC2059,SC2155,SC2164'
 # '''
 
 

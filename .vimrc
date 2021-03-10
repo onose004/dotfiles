@@ -47,7 +47,7 @@ let g:deoplete#enable_at_startup = 1
 set mouse=a
 set synmaxcol=320
 set hlsearch
-set number
+" set number
 syntax on
 set colorcolumn=80
 autocmd! FileType markdown hi! def link markdownItalic Label
@@ -75,10 +75,7 @@ set fileformats=unix,dos,mac
 
 " MAP {{{1
 
-map <F2> :.w !pbcopy<CR><CR>
-map <F8> :let mycurf=expand("<cfile>")<cr><c-w> w :execute("e ".mycurf)<cr><c-w>p
-
-" command Bd bp|bd #
+command! Bd bp|bd #
 nnoremap <Space>s :source $HOME/.vimrc<CR>
 " nnoremap <silent>k<Space>w :<C-u>w<CR>
 nnoremap <Space><Space> <c-^>
