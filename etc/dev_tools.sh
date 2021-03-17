@@ -37,3 +37,11 @@ hash ghq || {
   echo "Installing ghq..."
   go get -u github.com/x-motemen/ghq
 }
+
+# ------------------------------------------------------------------------------
+# Editor 
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh ~/.cache/dein
+mkdir -p $HOME/.config/nvim
+ln -s $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
