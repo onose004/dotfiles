@@ -69,7 +69,7 @@ make update
 - Local zsh config by adding `$HOME/.zshrc.local`
 
 ### Editor
-- `vim`
+- `neovim`
 
 ### Utils
 - `bats` for testing
