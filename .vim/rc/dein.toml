@@ -17,14 +17,13 @@ repo = 'simeji/winresizer'
 [[plugins]]
 repo = 'arcticicestudio/nord-vim'
 hook_add = '''
-  au MyAutoCmd VimEnter * nested colorscheme nord
+  colorscheme nord
 '''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   let g:lightline = {'colorscheme': 'nord'}
-  " let g:lightline = {'colorscheme': 'PaperColor'}
 '''
 
 [[plugins]]
