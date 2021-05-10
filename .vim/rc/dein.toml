@@ -1,4 +1,11 @@
 #-------------------------------------------------------------------------------
+# Lint & Completion
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+
+#-------------------------------------------------------------------------------
 # View 
 
 [[plugins]]
@@ -22,11 +29,6 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 
-#-------------------------------------------------------------------------------
-# Lint & Completion
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
 
 #-------------------------------------------------------------------------------
 # Syntax
@@ -47,3 +49,14 @@ repo = 'peitalin/vim-jsx-typescript'
 on_ft = 'typescript'
 repo = 'maxmellon/vim-jsx-pretty'
 
+[[plugins]]
+repo = 'KabbAmine/vCoolor.vim'
+
+[[plugins]]
+on_ft = 'tex'
+repo = 'lervag/vimtex'
+hook_add = '''
+  let g:vimtex_syntax_enabled = 0
+  let g:vimtex_fold_enabled = 1
+  noremap <silent> gd :<C-u>VimtexTocToggle<CR>
+'''
