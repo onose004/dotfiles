@@ -48,7 +48,6 @@ set mouse=a
 set synmaxcol=320
 set hlsearch
 " set number
-syntax on
 set colorcolumn=80
 autocmd! FileType markdown hi! def link markdownItalic Label
 
