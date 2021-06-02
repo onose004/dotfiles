@@ -58,5 +58,4 @@ repo = 'lervag/vimtex'
 hook_add = '''
   let g:vimtex_syntax_enabled = 0
   let g:vimtex_fold_enabled = 1
-  noremap <silent> gd :<C-u>VimtexTocToggle<CR>
 '''
