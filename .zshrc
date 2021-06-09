@@ -39,5 +39,16 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^]' ghq-fzf
 
+function flatten {
+  for item in $@; do
+    target=`echo $item | sed -e 's/\//-/g'`
+    cp $item $target
+  done
+}
+
+function npshape {
+  python3 -c "import numpy as np; print('$1', np.load('$1').shape)"
+}
+
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
