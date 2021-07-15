@@ -1,8 +1,8 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = "release"
-hook_add = '''
-" if (&ft=='python' || &ft=='typescript')
+ok_add = '''
+if (&ft=='python' || &ft=='typescript')
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -170,6 +170,5 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" endif
+endif
 '''
-on_ft = 'python'

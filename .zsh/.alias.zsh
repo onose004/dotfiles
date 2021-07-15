@@ -3,7 +3,7 @@ alias git-s='git status'
 alias git-u='git add -u'
 alias git-us='git-u; git-s'
 alias git-m='git commit -m'
-alias git-g='git log --graph'
+alias git-g='git log --graph --full-history --all --color  --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias git-d='git diff'
 alias git-dh='git diff HEAD'
 
