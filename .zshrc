@@ -14,6 +14,8 @@
   eval "$(pyenv init -)"
 }
 
+export PIPENV_VENV_IN_PROJECT=true
+
 # zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 PURE_PROMPT_SYMBOL="$"
@@ -49,6 +51,9 @@ function flatten {
 function npshape {
   python3 -c "import numpy as np; print('$1', np.load('$1').shape)"
 }
+alias gl='git log --graph --full-history --all --color \
+        --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias soz='source ~/.zshrc'
 
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH

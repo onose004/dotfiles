@@ -61,4 +61,4 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'n-eq/mbed-vim'
+repo = 'eigenfoo/stan-vim'
