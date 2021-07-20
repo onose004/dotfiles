@@ -1,0 +1,20 @@
+{
+  "load_extensions": {
+    "vim_binding/vim_binding": true
+  },
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": true
+    }
+  },
+  "codeCellConfig": {
+    "rulers": [
+      80
+    ],
+    "wordWrapColumn": 80
+  },
+  "Notebook": {
+    "Header": true,
+    "Toolbar": true
+  }
+}
