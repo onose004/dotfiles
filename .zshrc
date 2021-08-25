@@ -48,6 +48,12 @@ function flatten {
   done
 }
 
+function datasync {
+  data_path=/home/onose/Dropbox/data/datasync/`date '+%Y%m%d'`
+  mkdir -p $data_path
+  watch rsync -av $1 $data_path
+}
+
 function npshape {
   python3 -c "import numpy as np; print('$1', np.load('$1').shape)"
 }
