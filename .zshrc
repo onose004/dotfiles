@@ -30,6 +30,10 @@ export PATH="$HOME/dotfiles/bin:${PATH}"
 export FZF_COMPLETION_TRIGGER=','
 [ -e ~/.zsh/completions/docker-fzf.zsh ] && source ~/.zsh/completions/docker-fzf.zsh
 
+cdot() {
+  cd ~/dotfiles
+}
+
 sz() {
   source ~/.zshrc
 }
@@ -79,6 +83,9 @@ function ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^]' ghq-fzf
 
+zle -N fd
+# bindkey '^f' fd
+
 function flatten {
   for item in $@; do
     target=`echo $item | sed -e 's/\//-/g'`
@@ -87,13 +94,28 @@ function flatten {
 }
 
 function datasync {
-  data_path=/home/onose/Dropbox/data/datasync/`date '+%Y%m%d'`
+  data_path=~/Dropbox/data/datasync/`date '+%Y%m%d'`
   mkdir -p $data_path
   watch rsync -av $1 $data_path
 }
 
 function npshape {
   python3 -c "import numpy as np; print('$1', np.load('$1').shape)"
+}
+function npcat {
+  python3 -c "import numpy as np; print('$1', np.load('$1'))"
+}
+function npstat {
+  python3 -c """
+import numpy as np
+d = np.load('$1')
+print('shape:', d.shape)
+print('mean :', np.nanmean(d))
+print('std  :', np.nanstd(d)) 
+print('max  :', np.max(d))
+print('min  :', np.min(d))
+print('nan  :', np.isnan(d).sum())
+"""
 }
 alias gl='git log --graph --full-history --all --color \
         --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
