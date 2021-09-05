@@ -126,10 +126,7 @@ alias soz='source ~/.zshrc'
 
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
+export PATH="$HOME/.poetry/bin:$PATH"
 
-<<<<<<< HEAD
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
-=======
-export PATH="$HOME/.poetry/bin:$PATH"
->>>>>>> 49eef9a98a51b175096c35c5b05a740fd1e78eb3
