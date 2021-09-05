@@ -48,6 +48,10 @@ function flatten {
   done
 }
 
+function sshp {
+  open http://localhost:${2} & ssh -L ${2}:localhost:${2} -N ${1}
+}
+
 function npshape {
   python3 -c "import numpy as np; print('$1', np.load('$1').shape)"
 }
@@ -57,3 +61,6 @@ alias soz='source ~/.zshrc'
 
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
