@@ -1,0 +1,11 @@
+[user]
+	email = dev@onose.ws
+	name = Ryosuke Onose
+[core]
+	editor = vim
+[merge]
+	ff = false
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
