@@ -95,6 +95,9 @@ function flatten {
   done
 }
 
+function sshp {
+  open http://localhost:${2} & ssh -L ${2}:localhost:${2} -N ${1}
+
 function datasync {
   data_path=~/Dropbox/data/datasync/`date '+%Y%m%d'`
   mkdir -p $data_path
@@ -125,5 +128,7 @@ alias soz='source ~/.zshrc'
 
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
-
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
