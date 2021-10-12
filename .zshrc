@@ -97,6 +97,7 @@ function flatten {
 
 function sshp {
   open http://localhost:${2} & ssh -L ${2}:localhost:${2} -N ${1}
+}
 
 function datasync {
   data_path=~/Dropbox/data/datasync/`date '+%Y%m%d'`
