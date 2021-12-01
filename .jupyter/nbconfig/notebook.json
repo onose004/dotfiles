@@ -7,6 +7,11 @@
       "lineNumbers": true
     }
   },
+  "editorConfig": {
+    "rulers": [
+      80
+    ]
+  },
   "codeCellConfig": {
     "rulers": [
       80
@@ -16,5 +21,16 @@
   "Notebook": {
     "Header": true,
     "Toolbar": true
-  }
+  },
+  "keys": {
+    "command": {
+      "bind": {
+        "m": "vim-binding:change-cell-to-markdown",
+        "c": "vim-binding:change-cell-to-code"
+      }
+    }
+  },
+  "ruler_column": [
+    80
+  ]
 }
