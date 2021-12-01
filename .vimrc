@@ -8,41 +8,66 @@
 
 " BUNDLE {{{1
 
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" "dein Scripts-----------------------------
+" if &compatible
+"   set nocompatible               " Be iMproved
+" endif
+" 
+" " Required:
+" set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+" 
+" " Required:
+" if dein#load_state('$HOME/.cache/dein')
+"   call dein#begin('$HOME/.cache/dein')
+"   call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
+"   call dein#load_toml('$HOME/.vim/rc/dein.toml', {'lazy': 0})
+"   call dein#load_toml('$HOME/.vim/rc/dein_lazy.toml', {'lazy': 1})
+"   call dein#end()
+"   call dein#save_state()
+" endif
+" 
+" " Required:
+" filetype plugin indent on
+" syntax enable
+" 
+" " If you want to install not installed plugins on startup.
+" if dein#check_install()
+"   call dein#install()
+" endif
+" let g:deoplete#enable_at_startup = 1
+" 
+" 
+" 
+" "End dein Scripts-------------------------
 
-" Required:
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('$HOME/.cache/dein')
-  call dein#begin('$HOME/.cache/dein')
-  call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
-  call dein#load_toml('$HOME/.vim/rc/dein.toml', {'lazy': 0})
-  call dein#load_toml('$HOME/.vim/rc/dein_lazy.toml', {'lazy': 1})
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-let g:deoplete#enable_at_startup = 1
-
-
-
-"End dein Scripts-------------------------
+call plug#begin('~/.vim/plugged')
+Plug 'airblade/vim-gitgutter'
+Plug 'arcticicestudio/nord-vim'
+Plug 'simeji/winresizer'
+Plug 'josa42/vim-lightline-coc'
+Plug 'itchyny/lightline.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
 " }}}1
 
 " VIEW {{{1
+
+colorscheme nord
+let g:lightline = {
+  \'colorscheme': 'nord',
+  \'active': {
+    \'right': [
+      \['coc']
+    \]
+  \},
+  \'component_function': {
+    \'coc': 'coc#status'
+  \}
+\}
+
+" register compoments:
+call lightline#coc#register()
 
 set mouse=a
 set synmaxcol=320

@@ -11,7 +11,7 @@
 [ -d ~/.pyenv ] && {
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
 }
 
 export PIPENV_VENV_IN_PROJECT=true
@@ -95,6 +95,7 @@ function flatten {
 
 function sshp {
   open http://localhost:${2} & ssh -L ${2}:localhost:${2} -N ${1}
+}
 
 function datasync {
   data_path=~/Dropbox/data/datasync/`date '+%Y%m%d'`
@@ -127,6 +128,3 @@ alias soz='source ~/.zshrc'
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
-
-# Added by Amplify CLI binary installer
-export PATH="$HOME/.amplify/bin:$PATH"
