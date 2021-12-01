@@ -11,20 +11,20 @@ repo = 'mattn/emmet-vim'
 [[plugins]]
 repo = 'simeji/winresizer'
 
-[[plugins]]
-repo = 'arcticicestudio/nord-vim'
-hook_add = '''
-  colorscheme nord
-'''
+# [[plugins]]
+# repo = 'arcticicestudio/nord-vim'
+# hook_add = '''
+#   colorscheme nord
+# '''
 
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-  let g:lightline = {'colorscheme': 'nord'}
-'''
+# [[plugins]]
+# repo = 'itchyny/lightline.vim'
+# hook_add = '''
+#   let g:lightline = {'colorscheme': 'nord'}
+# '''
 
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
+# [[plugins]]
+# repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
