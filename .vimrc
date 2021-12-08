@@ -5,6 +5,17 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 
+" ENV {{{1
+
+let g:coc_global_extensions = [
+      \'coc-actions',
+      \'coc-diagnostic',
+      \'coc-jedi', 
+      \'coc-json', 
+      \'coc-yaml'
+\]
+
+" }}}1
 
 " BUNDLE {{{1
 
@@ -46,7 +57,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'simeji/winresizer'
 Plug 'josa42/vim-lightline-coc'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+Plug 'yaegassy/coc-pydocstring', {'do': 'yarn install --frozen-lockfile'}
 Plug 'itchyny/lightline.vim'
 call plug#end()
 

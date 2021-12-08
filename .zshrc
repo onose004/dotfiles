@@ -130,3 +130,4 @@ alias soz='source ~/.zshrc'
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
+eval "$(pyenv init -)"
