@@ -23,3 +23,21 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet ipj "import pjoin" b
+from os.path import join as pjoin
+endsnippet
+
+snippet logger "add logger" b
+logging.basicConfig(format='[%(asctime)s] [%(process)d] [%(name)s:%(lineno)d] [%(levelname)s] %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+endsnippet
+
+snippet snsjp "" b
+sns.set(style='whitegrid', font='IPAexGothic')
+endsnippet
+
+snippet numpy "" b
+import numpy as np
+endsnippet
