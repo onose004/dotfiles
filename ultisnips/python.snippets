@@ -38,6 +38,22 @@ snippet snsjp "" b
 sns.set(style='whitegrid', font='IPAexGothic')
 endsnippet
 
-snippet numpy "" b
+snippet inp "" b
 import numpy as np
+endsnippet
+
+snippet imp "" b
+import matplotlib.pyplot as plt
+endsnippet
+
+snippet subplots "" b
+fig, axs = plt.subplots(${1}, ${2}, figsize=(16, 9), sharex=False, sharey=False)
+endsnippet
+
+snippet mkdir "" b
+os.makedirs(args.out, exist_ok=True)
+endsnippet
+
+snippet savefig "" b
+fig.savefig(pjoin(args.out, "$1"))
 endsnippet

@@ -9,18 +9,16 @@
     "filetypes": {
       "python": "flake8",
       "sh": "shellcheck"
+    },
+    "formatFiletypes": {
+      "python": ["black", "isort"],
+      "sh": "shfmt"
     }
-  },
-  "formatFiletypes": {
-    "python": ["black"],
-    "sh": "shfmt"
   },
   "snnipets": {
     "userSnippetsDirector": "~/.vim/UltiSnips",
     "ultisnips": {
       "directories": ["~/.vim/UltiSnips"]
-
     }
   }
-
 }
