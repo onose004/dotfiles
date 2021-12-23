@@ -35,6 +35,8 @@ logger.setLevel(logging.INFO)
 endsnippet
 
 snippet snsjp "" b
+import seaborn as sns
+import japanize_matplotlib  # noqa: F401
 sns.set(style='whitegrid', font='IPAexGothic')
 endsnippet
 
@@ -47,7 +49,17 @@ import matplotlib.pyplot as plt
 endsnippet
 
 snippet subplots "" b
-fig, axs = plt.subplots(${1}, ${2}, figsize=(16, 9), sharex=False, sharey=False)
+fig, axs = plt.subplots(${1}, ${2}, figsize=(16, 9), sharex="col", sharey="row", tight_layout=True)
+fig: plt.Figure
+fig.suptitle("")
+fig.savefig(pjoin(args.out, "out.pdf"))
+endsnippet
+
+snippet ax "" b
+ax: plt.Axes
+ax.set_xlabel("")
+ax.set_ylabel("")
+ax.set_title("")
 endsnippet
 
 snippet mkdir "" b
@@ -56,4 +68,8 @@ endsnippet
 
 snippet savefig "" b
 fig.savefig(pjoin(args.out, "$1"))
+endsnippet
+
+snippet log "" b
+logger.info(f"{$1}")
 endsnippet

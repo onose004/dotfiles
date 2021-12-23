@@ -30,6 +30,8 @@ Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build'
 Plug 'yaegassy/coc-pydocstring', {'do': 'yarn install --frozen-lockfile'}
 Plug 'itchyny/lightline.vim'
 Plug 'honza/vim-snippets'
+Plug 'github/copilot.vim'
+Plug 'EdenEast/nightfox.nvim'
 call plug#end()
 
 " }}}1
@@ -38,16 +40,24 @@ call plug#end()
 
 colorscheme nord
 let g:lightline = {
-  \'colorscheme': 'nord',
-  \'active': {
-    \'right': [
-      \['coc']
-    \]
-  \},
-  \'component_function': {
-    \'coc': 'coc#status'
+  \  'colorscheme': 'nord',
+  \  'active': {
+  \    'left': [
+  \      [ 'mode', 'paste'],
+  \      [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \    ],
+  \    'right': [
+  \      [ 'coc' ],
+  \      [ 'lineinfo' ],
+  \      [ 'fileformat', 'fileencoding', 'filetype']
+  \    ]
+  \  },
+  \  'component_function': {
+  \    'coc': 'coc#status'
+  \  },
+  \  'separator': { 'left': '', 'right': '' },
+  \  'subseparator': { 'left': '', 'right': '' }
   \}
-\}
 
 " register compoments:
 call lightline#coc#register()
@@ -65,13 +75,13 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd Filetype sh setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype sh setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 set smartindent
 
 " }}}1
 
-" LANG {{{1
+" {{{1
 
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
@@ -79,11 +89,10 @@ set fileformats=unix,dos,mac
 
 " }}}1
 
-
 " MAP {{{1
 
 command! Bd bp|bd #
-nnoremap <Space>s :source $HOME/.vimrc<CR>
+nnoremap <Space><Space> :Format<CR>
 
 " copy to attached terminal using the yank(1) script:
 " https://github.com/sunaku/home/blob/master/bin/yank
@@ -140,7 +149,7 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
+if has('nvim-0.5.0') || has('patch-8.1.1564')
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
@@ -193,7 +202,7 @@ function! s:show_documentation()
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    execute '!' . &keywordprg . ' ' . expand('<cword>')
   endif
 endfunction
 

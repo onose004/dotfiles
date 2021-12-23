@@ -8,7 +8,8 @@
   "diagnostic-languageserver": {
     "filetypes": {
       "python": "flake8",
-      "sh": "shellcheck"
+      "sh": "shellcheck",
+      "vim": "vint"
     },
     "formatFiletypes": {
       "python": ["black", "isort"],

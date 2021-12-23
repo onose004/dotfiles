@@ -23,3 +23,11 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet stage "stage" b
+cur=$1
+if [ "\${stage}" -le \${cur} ] && [ "\${stop_stage}" -ge \${cur} ]; then
+	echo stage \${cur}
+	$2
+fi
+endsnippet
