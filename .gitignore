@@ -6,6 +6,7 @@
 .git*
 .
 ..
+*.un~
 var/*
 *.swp
 .vim

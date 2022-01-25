@@ -41,7 +41,6 @@ hash ghq || {
 # ------------------------------------------------------------------------------
 # Editor 
 
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh ~/.cache/dein
 mkdir -p $HOME/.config/nvim
 ln -s $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
+ln -s $HOME/dotfiles/.vim/coc-settings.json $HOME/.config/nvim
