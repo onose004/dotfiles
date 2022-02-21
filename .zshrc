@@ -9,6 +9,7 @@
 #
 alias vimdiff='nvim -d '
 
+
 # pyenv
 [ -d ~/.pyenv ] && {
   export PYENV_ROOT="$HOME/.pyenv"
@@ -131,3 +132,8 @@ export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
 eval "$(pyenv init -)"
+
+fpath=(~/.zsh/completions $fpath)
+autoload -U ~/.zsh/completions*(:t)
+autoload -U compinit
+compinit -i
