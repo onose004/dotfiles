@@ -7,10 +7,6 @@
   [ -d $HOME/.tmux/plugins/tpm ]
 }
 
-@test "NeoBundle installed" {
-  [ -d $HOME/.vim/bundle/neobundle.vim ]
-}
-
 @test "Zprezto installed" {
   [ -d $HOME/.zprezto ]
 }
