@@ -73,3 +73,19 @@ endsnippet
 snippet log "" b
 logger.info(f"{$1}")
 endsnippet
+
+snippet df_pool "" b
+num_procs = min(4, multiprocessing.cpu_count())
+chunk_size = int(iloc_df.shape[0] / num_procs)
+chunks = [
+    iloc_df.loc[iloc_df.index[i:i + chunk_size]]
+    for i in range(0, iloc_df.shape[0], chunk_size)
+]
+pool = multiprocessing.Pool(processes=num_procs)
+dfs = pool.map(run, chunks)
+endsnippet
+
+snippet mp "" b
+pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
+dfs = pool.map(proc, chunks)
+endsnippet
