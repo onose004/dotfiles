@@ -8,7 +8,7 @@
 # export LC_ALL=ja_JP.UTF-8
 #
 alias vimdiff='nvim -d '
-
+alias vim='nvim '
 
 # pyenv
 [ -d ~/.pyenv ] && {
