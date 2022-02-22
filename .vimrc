@@ -15,6 +15,8 @@ let g:coc_global_extensions = [
       \'coc-snippets', 
       \'coc-yaml'
 \]
+let g:pydocstring_formatter = 'google'
+
 
 " }}}1
 
@@ -32,6 +34,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'honza/vim-snippets'
 Plug 'github/copilot.vim'
 Plug 'EdenEast/nightfox.nvim'
+Plug 'relastle/vim-nayvy'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'biosugar0/vim-popyank'
 call plug#end()
 
 " }}}1
@@ -62,6 +67,10 @@ let g:lightline = {
 " register compoments:
 call lightline#coc#register()
 
+" set number
+" set cursorline
+" highlight clear CursorLine
+" highlight CursorLine gui=underline cterm=underline
 set mouse=a
 set synmaxcol=320
 set hlsearch
@@ -93,6 +102,7 @@ set fileformats=unix,dos,mac
 
 command! Bd bp|bd #
 nnoremap <Space><Space> :Format<CR>
+nnoremap <silent><nowait> <space>n  :NayvyImports<cr>
 
 " copy to attached terminal using the yank(1) script:
 " https://github.com/sunaku/home/blob/master/bin/yank
@@ -189,6 +199,8 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> sgd :split<CR><Plug>(coc-definition)
+nmap <silent> vgd :vsplit<CR><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
