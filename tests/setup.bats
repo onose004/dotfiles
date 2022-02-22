@@ -32,11 +32,3 @@
   run type curl 
   [ "$status" -eq 0 ]
 }
-
-@test "verify dotfiles" {
-  # check diff with origin/master 
-  git fetch origin
-  run git diff origin/master
-  [ "$status" -eq 0 ]
-  [ "${lines[0]}" = "" ]
-}

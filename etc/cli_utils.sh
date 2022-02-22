@@ -1,6 +1,7 @@
 #!/bin/bash
 # sudo required
 
+
 # ------------------------------------------------------------------------------
 # PLUGIN MANAGER
 
@@ -13,12 +14,10 @@ else
   $HOME/.tmux/plugins/tpm/bin/update_plugins
 fi
 
-# neobundle for vim
-[[ ! -d $HOME/.vim/bundle ]] && {
-  echo "Installing NeoBundle..."
-  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-}
-vim +NeoBundleInstall +qall
+# vim-plug for nvim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
+  --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim +PlugInstall +qall
 
 # ------------------------------------------------------------------------------
 # SHELL UTILS

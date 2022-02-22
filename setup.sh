@@ -77,7 +77,7 @@ done
 # ------------------------------------------------------------------------------
 # POST-INSTALL
 
-[[ ! `basename $SHELL` == "zsh" ]] && chsh -s `which zsh`
+[[ ! `basename $SHELL` == "zsh" ]] && chsh -s `where zsh`
 
 # ------------------------------------------------------------------------------
 # CLONE & INSTALL DOTFILES
