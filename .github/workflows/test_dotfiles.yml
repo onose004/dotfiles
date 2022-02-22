@@ -1,0 +1,13 @@
+name: Test dotfiles
+on: push
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Run setup.sh
+        run: bash setup.sh
