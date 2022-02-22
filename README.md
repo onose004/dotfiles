@@ -37,15 +37,16 @@ The update script updates dotfiles and their plugins.
 It does not include an OS update.
 
 ```
-cd $HOME/dotfiles
+cdot
 make update
 ```
 
-### Test
+### Docker
 
-- `make test` to verify plugins/utilities/apps installed by this repo.
-- `etc/verify_dotfiles.sh` to verify all supported environments.
-
+```
+$ docker-compose build
+$ docker run -it dotfiles_onose004-ubuntu-20.04 /bin/zsh
+```
 
 ## What's included?
 

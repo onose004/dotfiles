@@ -4,4 +4,5 @@ services:
     build:
       context: .
       dockerfile: ./docker/ubuntu-20.04/Dockerfile
-
+    environment:
+      - TZ=Asia/Tokyo

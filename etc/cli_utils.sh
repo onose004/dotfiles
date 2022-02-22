@@ -1,6 +1,33 @@
 #!/bin/bash
 # sudo required
 
+# node
+
+hash node || {
+  echo "Installing node..."
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # Ubuntu / CentOS
+    source /etc/os-release
+    if [[ "$NAME" == "Ubuntu" ]]; then
+      apt install -y nodejs npm
+      npm install n -g
+      n stable
+      apt purge -y nodejs npm
+    elif [[ "$NAME" == "CentOS Linux" ]]; then
+      yum install -y nodejs npm
+      npm install n -g
+      n stable
+      yum purge -y nodejs npm
+    fi
+  elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
+    # Raspbian
+    echo "Not Implemented"
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # MacOS
+    brew install n
+    n stable
+  fi
+}
 
 # ------------------------------------------------------------------------------
 # PLUGIN MANAGER
