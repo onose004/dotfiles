@@ -10,5 +10,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - name: setup
-        run: ./setup.sh
+      - name: setup on linux
+        if: runner.os == 'Linux'
+        run: sudo bash ./setup.sh
+      - name: setup on macos 
+        if: runner.os == 'macOS'
+        run: bash ./setup.sh
