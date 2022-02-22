@@ -1,0 +1,18 @@
+name: setup_dotfiles
+on: push
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup on linux
+        if: runner.os == 'Linux'
+        run: sudo bash ./setup.sh
+      - name: setup on macos 
+        if: runner.os == 'macOS'
+        run: bash ./setup.sh
