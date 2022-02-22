@@ -8,14 +8,7 @@ My dotfiles growing like bonsai trees.
 ## Environment
 
 Scripts are tested on:
-
-- Ubuntu 16.04
-- CentOS 7
-- Raspbian Stretch
-
-Partly tested on:
-
-- MacOS Catalina
+ubuntu-20.04, ubuntu-latest, macos-latest
 
 ## Setup
 
@@ -32,7 +25,7 @@ It also includes an OS update.
 
 ```
 # apt-get update; apt-get install -y curl
-bash -c "$(curl -L https://raw.githubusercontent.com/onose004/dotfiles/master/setup.sh)"
+sudo bash -c "$(curl -L https://raw.githubusercontent.com/onose004/dotfiles/master/setup.sh)"
 
 # enable zsh
 exec zsh -l
@@ -44,15 +37,16 @@ The update script updates dotfiles and their plugins.
 It does not include an OS update.
 
 ```
-cd $HOME/dotfiles
+cdot
 make update
 ```
 
-### Test
+### Docker
 
-- `make test` to verify plugins/utilities/apps installed by this repo.
-- `etc/verify_dotfiles.sh` to verify all supported environments.
-
+```
+$ docker-compose build
+$ docker run -it dotfiles_onose004-ubuntu-20.04 /bin/zsh
+```
 
 ## What's included?
 
