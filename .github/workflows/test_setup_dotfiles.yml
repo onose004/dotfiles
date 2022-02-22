@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: setup
-        run: sudo bash setup.sh
+        run: ./setup.sh
