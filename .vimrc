@@ -8,12 +8,12 @@
 " ENV {{{1
 
 let g:coc_global_extensions = [
-      \'coc-actions',
       \'coc-diagnostic',
       \'coc-jedi', 
+      \'coc-tsserver', 
       \'coc-json', 
-      \'coc-snippets', 
-      \'coc-yaml'
+      \'coc-yaml',
+      \'coc-snippets'
 \]
 let g:pydocstring_formatter = 'google'
 
