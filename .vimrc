@@ -9,11 +9,12 @@
 
 let g:coc_global_extensions = [
       \'coc-diagnostic',
+      \'coc-eslint',
       \'coc-jedi', 
-      \'coc-tsserver', 
       \'coc-json', 
+      \'coc-snippets',
+      \'coc-tsserver', 
       \'coc-yaml',
-      \'coc-snippets'
 \]
 let g:pydocstring_formatter = 'google'
 

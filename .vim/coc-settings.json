@@ -32,10 +32,22 @@
   },
   "javascript": {
     "format": {
+      "insertSpaceAfterCommaDelimiter": true,
+      "insertSpaceAfterConstructor": false,
+      "insertSpaceAfterSemicolonInForStatements": true,
+      "insertSpaceBeforeAndAfterBinaryOperators": true,
+      "insertSpaceAfterKeywordsInControlFlowStatements": true,
+      "insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+      "insertSpaceBeforeFunctionParenthesis": false,
       "insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
+      "insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
       "insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
       "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
-      "insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true
+      "insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": false,
+      "insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+      "insertSpaceAfterTypeAssertion": false,
+      "placeOpenBraceOnNewLineForFunctions": false,
+      "placeOpenBraceOnNewLineForControlBlocks": false 
     }
   }
 }
