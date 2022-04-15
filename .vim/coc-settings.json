@@ -21,5 +21,21 @@
     "ultisnips": {
       "directories": ["~/.vim/UltiSnips"]
     }
+  },
+  "typescript": {
+    "format": {
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+      "insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true
+    }
+  },
+  "javascript": {
+    "format": {
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+      "insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true
+    }
   }
 }

@@ -25,18 +25,19 @@ let g:pydocstring_formatter = 'google'
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
-Plug 'simeji/winresizer'
+Plug 'biosugar0/vim-popyank'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'github/copilot.vim'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
 Plug 'josa42/vim-lightline-coc'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
-Plug 'yaegassy/coc-pydocstring', {'do': 'yarn install --frozen-lockfile'}
-Plug 'itchyny/lightline.vim'
-Plug 'honza/vim-snippets'
-Plug 'github/copilot.vim'
-Plug 'EdenEast/nightfox.nvim'
 Plug 'relastle/vim-nayvy'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'biosugar0/vim-popyank'
+Plug 'simeji/winresizer'
+Plug 'tpope/vim-fugitive'
+Plug 'yaegassy/coc-pydocstring', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 " }}}1
@@ -63,6 +64,8 @@ let g:lightline = {
   \  'separator': { 'left': '', 'right': '' },
   \  'subseparator': { 'left': '', 'right': '' }
   \}
+set diffopt+=vertical
+
 
 " register compoments:
 call lightline#coc#register()
