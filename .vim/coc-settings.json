@@ -21,5 +21,33 @@
     "ultisnips": {
       "directories": ["~/.vim/UltiSnips"]
     }
+  },
+  "typescript": {
+    "format": {
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+      "insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true
+    }
+  },
+  "javascript": {
+    "format": {
+      "insertSpaceAfterCommaDelimiter": true,
+      "insertSpaceAfterConstructor": false,
+      "insertSpaceAfterSemicolonInForStatements": true,
+      "insertSpaceBeforeAndAfterBinaryOperators": true,
+      "insertSpaceAfterKeywordsInControlFlowStatements": true,
+      "insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+      "insertSpaceBeforeFunctionParenthesis": false,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
+      "insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+      "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+      "insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": false,
+      "insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
+      "insertSpaceAfterTypeAssertion": false,
+      "placeOpenBraceOnNewLineForFunctions": false,
+      "placeOpenBraceOnNewLineForControlBlocks": false 
+    }
   }
 }
