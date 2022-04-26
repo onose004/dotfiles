@@ -15,6 +15,10 @@ export PIPENV_VENV_IN_PROJECT=true
 # zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 PURE_PROMPT_SYMBOL="$"
+PURE_PROMPT_VICMD_SYMBOL="#"
+PURE_GIT_PULL=0
+
+
 
 source $HOME/.zsh/.alias.zsh
 export PATH="$HOME/dotfiles/bin:${PATH}"
@@ -128,3 +132,5 @@ fpath=(~/.zsh/completions $fpath)
 autoload -U ~/.zsh/completions*(:t)
 autoload -U compinit
 compinit -i
+
+export PATH="$HOME/.poetry/bin:$PATH"
