@@ -33,8 +33,10 @@ Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'josa42/vim-lightline-coc'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 Plug 'relastle/vim-nayvy'
 Plug 'simeji/winresizer'
 Plug 'tpope/vim-abolish'
@@ -107,7 +109,8 @@ set fileformats=unix,dos,mac
 
 command! Bd bp|bd #
 nnoremap <Space><Space> :Format<CR>
-nnoremap <silent><nowait> <space>n  :NayvyImports<cr>
+nnoremap <silent><nowait> <space>n :NayvyImports<cr>
+nnoremap <silent><nowait> <Leader>o :CocCommand tsserver.organizeImports<cr>
 
 " copy to attached terminal using the yank(1) script:
 " https://github.com/sunaku/home/blob/master/bin/yank
@@ -123,6 +126,7 @@ noremap <silent> <Leader>y y:<C-U>call Yank(@0)<CR>
 
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
 
 " " Use <C-l> for trigger snippet expand.
 " imap <C-l> <Plug>(coc-snippets-expand)
