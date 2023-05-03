@@ -1,0 +1,30 @@
+#!/bin/bash
+
+PORT=$1
+
+if [[ -z $PORT ]]; then
+  echo "Port number is required."
+  exit 1
+fi
+
+echo "Processes running on port $PORT:"
+
+lsof -i :$PORT
+
+echo ""
+echo "Are you sure you want to kill the process on port $PORT? (y/n)"
+read answer
+
+if [[ $answer != "y" ]]; then
+  echo "Process not killed."
+  exit 0
+fi
+
+PID=$(lsof -i :$PORT | awk '{print $2}' | sed -n '2p')
+
+if [[ -n $PID ]]; then
+  kill $PID
+  echo "Process on port $PORT killed."
+else
+  echo "No process found on port $PORT."
+fi

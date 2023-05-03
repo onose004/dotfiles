@@ -340,3 +340,7 @@ import pytest
 from pytest import fixture
 import matplotlib.pyplot as plt
 from os.path import join as pjoin
+import cv2
+from PIL import Image
+from tqdm import tqdm
+from bs4 import BeautifulSoup

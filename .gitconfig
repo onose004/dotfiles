@@ -14,3 +14,9 @@
 	prompt = false
 [pull]
 	ff = only
+[safe]
+	directory = /home/onose/ghq/github.com/onose004/nu-photo-studio
+	directory = /home/onose/ghq/github.com/onose004/nu-photo-studio
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
