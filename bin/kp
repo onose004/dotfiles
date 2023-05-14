@@ -23,7 +23,7 @@ fi
 PID=$(lsof -i :$PORT | awk '{print $2}' | sed -n '2p')
 
 if [[ -n $PID ]]; then
-  kill $PID
+  kill -9 $PID
   echo "Process on port $PORT killed."
 else
   echo "No process found on port $PORT."
