@@ -1,18 +1,39 @@
 name: setup_dotfiles
-on: push
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
-  ci:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-20.04, ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+  ci-ubuntu:
+    runs-on: ubuntu-latest
+    container: ubuntu:22.04
     steps:
-      - uses: actions/checkout@v2
-      - name: setup on linux
-        if: runner.os == 'Linux'
-        run: sudo bash ./setup.sh
-      - name: setup on macos
-        if: runner.os == 'macOS'
-        run: bash ./setup.sh
+      - name: install git
+        run: apt-get update -y && apt-get install -y git
+      - uses: actions/checkout@v4
+      - name: setup
+        run: bash setup.sh
+        env:
+          DOTFILES_ROOT: ${{ github.workspace }}
+          ADDONS: "false"
+          DEBIAN_FRONTEND: noninteractive
+      - name: test
+        run: bats tests/
+
+  ci-centos:
+    runs-on: ubuntu-latest
+    container: quay.io/centos/centos:stream9
+    steps:
+      - name: install git
+        run: dnf install -y git
+      - uses: actions/checkout@v4
+      - name: setup
+        run: bash setup.sh
+        env:
+          DOTFILES_ROOT: ${{ github.workspace }}
+          ADDONS: "false"
+      - name: test
+        run: bats tests/

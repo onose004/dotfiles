@@ -101,27 +101,8 @@ function datasync {
   watch rsync -av $1 $data_path
 }
 
-function npshape {
-  python3 -c "import numpy as np; print('$1', np.load('$1').shape)"
-}
-function npcat {
-  python3 -c "import numpy as np; print('$1', np.load('$1'))"
-}
-function npstat {
-  python3 -c """
-import numpy as np
-d = np.load('$1')
-print('shape:', d.shape)
-print('mean :', np.nanmean(d))
-print('std  :', np.nanstd(d)) 
-print('max  :', np.max(d))
-print('min  :', np.min(d))
-print('nan  :', np.isnan(d).sum())
-"""
-}
 alias gl='git log --graph --full-history --all --color \
         --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-alias soz='source ~/.zshrc'
 
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH

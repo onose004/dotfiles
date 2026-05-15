@@ -3,4 +3,4 @@ import sys
 import numpy as np
 
 f = sys.argv[1]
-print(f, np.load(f).shape)
+print(f, np.load(f))

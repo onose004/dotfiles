@@ -6,79 +6,79 @@ My dotfiles growing like bonsai trees.
 
 ## Environment
 
-Scripts are tested on:
-ubuntu-20.04, ubuntu-latest, macos-latest
+- Ubuntu 22.04+
+- CentOS Stream 9
 
 ## Setup
 
-### Pre-installation (recommended)
+### 1. Clone
 
-- [Nord Theme](https://github.com/arcticicestudio/nord-terminal-app) for Terminal.app
-- [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) for font
-
-### Install
-
-The following script installs basic part of this dotfiles and their plugins
-end-to-end in a clean environment.
-It also includes an OS update.
-
+```sh
+git clone https://github.com/onose004/dotfiles ~/dotfiles
 ```
-# apt-get update; apt-get install -y curl
-sudo bash -c "$(curl -L https://raw.githubusercontent.com/onose004/dotfiles/master/setup.sh)"
 
-# enable zsh
+### 2. Run setup
+
+Root 権限が必要です。
+
+```sh
+sudo bash ~/dotfiles/setup.sh
+```
+
+以下が自動で行われます:
+
+- 基本ツール (git, tmux, zsh, neovim, make, curl) のインストール
+- dotfiles のシンボリックリンク作成 (`make deploy`)
+- プラグイン等のインストール (`make install`)
+
+### 3. Start zsh
+
+```sh
 exec zsh -l
 ```
 
 ### Update
 
-The update script updates dotfiles and their plugins.
-It does not include an OS update.
-
-```
+```sh
 cdot
 make update
 ```
 
-### Docker
-
-```
-$ docker-compose build
-$ docker run -it dotfiles_onose004-ubuntu-20.04 /bin/zsh
-```
-
 ## What's included?
 
-### Themes
+### Theme
 
-- [Nord](https://www.nordtheme.com/) for `Terminal.app`, `vim` and `tmux`
+- [Nord](https://www.nordtheme.com/) for `vim` and `tmux`
 - [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) for font
 
 ### Multiplexer
 
-- `tmux`
+- `tmux` + [tpm](https://github.com/tmux-plugins/tpm)
 
 ### Shell
 
-- `zsh` for shell
-- `zprezto` for zsh tweaking
-- Local zsh config by adding `$HOME/.zshrc.local`
+- `zsh` + [zprezto](https://github.com/sorin-ionescu/prezto)
+- Machine-local config: `~/.zshrc.local`
 
 ### Editor
 
-- `neovim`
+- `neovim` + [vim-plug](https://github.com/junegunn/vim-plug)
 
 ### Utils
 
-- `bats` for testing
-- `fzf` for interactive filter
+- `fzf` — fuzzy finder
+- `ghq` — repository management
+- `bats` — shell testing
 
 ## Repo structure
 
-- `bin/`: custom utility commands
-- `etc/`: configuration files and scripts for plugins/utilities/applications
-- `tests/`: bats format test scripts
-- `sample/`: screenshot images
-- `Makefile`: a recipe for script execution
-- `README.md`
-- `setup.sh`: a script for end-to-end installation
+```
+dotfiles/
+├── bin/          custom utility commands
+├── etc/          install / update scripts
+├── tests/        bats test scripts
+├── sample/       screenshot images
+├── Makefile
+├── setup.sh      end-to-end setup entry point
+└── README.md
+```

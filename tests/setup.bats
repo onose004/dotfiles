@@ -1,34 +1,80 @@
 #!/usr/bin/env bats
 
-# setup.bats
-# verifies installation by setup.sh
-
+# Fundamentals
 @test "git installed" {
-  run type git
+  run command -v git
   [ "$status" -eq 0 ]
 }
 
 @test "tmux installed" {
-  run type tmux
+  run command -v tmux
   [ "$status" -eq 0 ]
 }
 
 @test "zsh installed" {
-  run type zsh
+  run command -v zsh
   [ "$status" -eq 0 ]
 }
 
-@test "vim installed" {
-  run type vim
+@test "nvim installed" {
+  run command -v nvim
   [ "$status" -eq 0 ]
 }
 
 @test "make installed" {
-  run type make
+  run command -v make
   [ "$status" -eq 0 ]
 }
 
 @test "curl installed" {
-  run type curl 
+  run command -v curl
+  [ "$status" -eq 0 ]
+}
+
+@test "tree installed" {
+  run command -v tree
+  [ "$status" -eq 0 ]
+}
+
+# CLI utils
+@test "fzf installed" {
+  run command -v fzf
+  [ "$status" -eq 0 ]
+}
+
+@test "zprezto installed" {
+  [ -d "$HOME/.zprezto" ]
+}
+
+@test "tpm installed" {
+  [ -d "$HOME/.tmux/plugins/tpm" ]
+}
+
+# Dev tools
+@test "ghq installed" {
+  run command -v ghq
+  [ "$status" -eq 0 ]
+}
+
+# Symlinks
+@test "symlink .vimrc exists" {
+  [ -L "$HOME/.vimrc" ]
+}
+
+@test "symlink .zshrc exists" {
+  [ -L "$HOME/.zshrc" ]
+}
+
+@test "symlink .tmux.conf exists" {
+  [ -L "$HOME/.tmux.conf" ]
+}
+
+@test "symlink .bashrc exists" {
+  [ -L "$HOME/.bashrc" ]
+}
+
+# nvim
+@test "nvim opens without error" {
+  run nvim --headless -u "$HOME/.vimrc" +qa
   [ "$status" -eq 0 ]
 }
