@@ -31,10 +31,23 @@
   [ "$status" -eq 0 ]
 }
 
+@test "tree installed" {
+  run command -v tree
+  [ "$status" -eq 0 ]
+}
+
 # CLI utils
 @test "fzf installed" {
   run command -v fzf
   [ "$status" -eq 0 ]
+}
+
+@test "zprezto installed" {
+  [ -d "$HOME/.zprezto" ]
+}
+
+@test "tpm installed" {
+  [ -d "$HOME/.tmux/plugins/tpm" ]
 }
 
 # Dev tools
