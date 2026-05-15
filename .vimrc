@@ -5,34 +5,13 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 
-" ENV {{{1
-
-let g:pydocstring_formatter = 'google'
-
-" Gutentags
-" Don't load me if there's no ctags file
-if !executable('ctags')
-    let g:gutentags_dont_load = 1
-endif
-
-
-" }}}1
-
 " BUNDLE {{{1
 
 call plug#begin('~/.vim/plugged')
-Plug 'mgedmin/python-imports.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
-Plug 'biosugar0/vim-popyank'
-Plug 'EdenEast/nightfox.nvim'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 Plug 'simeji/winresizer'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " }}}1
@@ -43,6 +22,23 @@ try
   colorscheme nord
 catch
 endtry
+
+let g:lightline = {
+  \  'colorscheme': 'nord',
+  \  'active': {
+  \    'left': [
+  \      [ 'mode', 'paste'],
+  \      [ 'readonly', 'filename', 'modified' ]
+  \    ],
+  \    'right': [
+  \      [ 'lineinfo' ],
+  \      [ 'fileformat', 'fileencoding', 'filetype']
+  \    ]
+  \  },
+  \  'separator': { 'left': '', 'right': '' },
+  \  'subseparator': { 'left': '', 'right': '' }
+  \}
+
 set diffopt+=vertical
 
 set mouse=a
@@ -64,7 +60,7 @@ set smartindent
 
 " }}}1
 
-" {{{1
+" ENCODING {{{1
 
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
@@ -101,13 +97,10 @@ autocmd BufNewFile *.py 0r $HOME/.vim/template/python.txt
 autocmd QuickFixCmdPost *grep* cwindow
 set ignorecase
 
-
-" enable backspace
 set backspace=indent,eol,start
 
 " clipboard
 " set clipboard=unnamed,autoselect
-
 
 " lightline
 set laststatus=2
@@ -118,24 +111,13 @@ autocmd BufRead,BufNewFile *.php set filetype=html
 
 set fdm=marker
 
-" files
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
 set backupcopy=yes
-
-set nobackup
-set nowritebackup
-set updatetime=300
+set updatetime=1000
 set signcolumn=yes
 
-" undo
-if has('persistent_undo')
-  let undo_path = expand('~/.vim/undo')
-  " exe 'set undodir=' .. undo_path
-  set undofile
-endif
-
-
+set undofile
 
 " }}}1
 
