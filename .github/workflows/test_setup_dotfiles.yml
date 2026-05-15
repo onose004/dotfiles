@@ -13,6 +13,6 @@ jobs:
       - name: setup on linux
         if: runner.os == 'Linux'
         run: sudo bash ./setup.sh
-      - name: setup on macos 
+      - name: setup on macos
         if: runner.os == 'macOS'
         run: bash ./setup.sh

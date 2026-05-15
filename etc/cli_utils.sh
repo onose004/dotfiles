@@ -78,7 +78,7 @@ if [[ ! -d $HOME/.fzf ]]; then
 else
   echo "Updating fzf..."
   pushd $HOME/.fzf
-  [ "`git pull`" = "Already up to date." ] || {
+  [ "$(git pull)" = "Already up to date." ] || {
     yes | ./install
   }
   popd

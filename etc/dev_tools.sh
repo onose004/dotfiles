@@ -49,7 +49,7 @@ hash ghq || {
 }
 
 # ------------------------------------------------------------------------------
-# Editor 
+# Editor
 
 # mkdir -p $HOME/.config/nvim
 # ln -s $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim

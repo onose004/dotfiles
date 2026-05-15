@@ -59,8 +59,7 @@ else
   $APT update -y
 fi
 
-for package in $FORMULA
-do
+for package in $FORMULA; do
   hash "$package" || {
     if [[ "$APT" == "brew" ]]; then
       $APT install $package
@@ -77,7 +76,7 @@ done
 # ------------------------------------------------------------------------------
 # POST-INSTALL
 
-[[ ! `basename $SHELL` == "zsh" ]] && chsh -s `where zsh`
+[[ ! $(basename $SHELL) == "zsh" ]] && chsh -s $(where zsh)
 
 # ------------------------------------------------------------------------------
 # CLONE & INSTALL DOTFILES

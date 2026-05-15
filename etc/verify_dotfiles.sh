@@ -1,5 +1,5 @@
 #!/bin/bash
-# requires docker 
+# requires docker
 # Note: setup.sh pulls origin/master
 
 docker_images="centos:7 ubuntu:16.04 raspbian/stretch"

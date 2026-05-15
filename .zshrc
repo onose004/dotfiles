@@ -18,8 +18,6 @@ PURE_PROMPT_SYMBOL="$"
 PURE_PROMPT_VICMD_SYMBOL="#"
 PURE_GIT_PULL=0
 
-
-
 source $HOME/.zsh/.alias.zsh
 export PATH="$HOME/dotfiles/bin:${PATH}"
 
@@ -38,33 +36,32 @@ sz() {
   source ~/.zshrc
 }
 
-
 fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+    -o -type d -print 2>/dev/null | fzf +m) &&
+    cd "$dir"
 }
 
 fbr() {
   local branches branch
   branches=$(git branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
-  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+    branch=$(echo "$branches" | fzf +m) &&
+    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
 fbrm() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    branch=$(echo "$branches" |
+      fzf-tmux -d $((2 + $(wc -l <<<"$branches"))) +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 fshow() {
   git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr %an" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+    --format="%C(auto)%h%d %s %C(black)%C(bold)%cr %an" "$@" |
+    fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
       --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
@@ -88,17 +85,18 @@ zle -N fd
 
 function flatten {
   for item in $@; do
-    target=`echo $item | sed -e 's/\//-/g'`
+    target=$(echo $item | sed -e 's/\//-/g')
     cp $item $target
   done
 }
 
 function sshp {
-  open http://localhost:${2} & ssh -L ${2}:localhost:${2} -N ${1}
+  open http://localhost:${2} &
+  ssh -L ${2}:localhost:${2} -N ${1}
 }
 
 function datasync {
-  data_path=~/Dropbox/data/datasync/`date '+%Y%m%d'`
+  data_path=~/Dropbox/data/datasync/$(date '+%Y%m%d')
   mkdir -p $data_path
   watch rsync -av $1 $data_path
 }
@@ -140,3 +138,6 @@ zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 [ -f ~/.safe-chain/scripts/init-posix.sh ] && source ~/.safe-chain/scripts/init-posix.sh
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

@@ -25,5 +25,10 @@ clean: ## Remove the dot files
 update:
 	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/etc/update.sh
 
+fmt: ## Format shell, YAML, JSON, and Markdown files
+	shfmt -w -i 2 etc bin setup.sh
+	shfmt -w -i 2 -ln bash .bashrc .zshrc
+	prettier --write "**/*.{yml,yaml,json,md}"
+
 test:
 	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests"
