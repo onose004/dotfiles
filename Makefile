@@ -22,8 +22,10 @@ clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
 
-update:
-	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/etc/update.sh
+update: ## Pull latest changes and re-deploy
+	@git -C $(DOTPATH) pull
+	@$(MAKE) deploy
+	@$(MAKE) install
 
 fmt: ## Format shell, YAML, JSON, and Markdown files
 	shfmt -w -i 2 etc bin setup.sh
