@@ -18,7 +18,7 @@ jobs:
         run: bash setup.sh
         env:
           DOTFILES_ROOT: ${{ github.workspace }}
-          CI: "true"
+          ADDONS: "false"
           DEBIAN_FRONTEND: noninteractive
       - name: test
         run: bats tests/
@@ -34,6 +34,6 @@ jobs:
         run: bash setup.sh
         env:
           DOTFILES_ROOT: ${{ github.workspace }}
-          CI: "true"
+          ADDONS: "false"
       - name: test
         run: bats tests/

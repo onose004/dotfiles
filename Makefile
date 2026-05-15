@@ -6,8 +6,10 @@ DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 setup: ## Setup environment settings
 	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/setup.sh
 
-install: ## Install plugins/utilities/applications
-	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/etc/install.sh
+ADDONS ?= true
+
+install: ## Install plugins/utilities/applications (ADDONS=false for essential only)
+	@DOTPATH=$(DOTPATH) ADDONS=$(ADDONS) /bin/bash $(DOTPATH)/etc/install.sh
 
 list: ## Show dot files in this repo
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
