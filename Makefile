@@ -17,7 +17,7 @@ list: ## Show dot files in this repo
 deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)\
 	mkdir -p $(HOME)/.config/nvim; \
-	ln -fs $(HOME)/dotfiles/.vimrc $(HOME)/.config/nvim/init.vim
+	ln -fs $(DOTPATH)/.vimrc $(HOME)/.config/nvim/init.vim
 
 
 clean: ## Remove the dot files
