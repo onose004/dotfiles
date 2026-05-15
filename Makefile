@@ -14,10 +14,8 @@ list: ## Show dot files in this repo
 
 deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)\
-	mkdir -p $(HOME)/.config/coc $(HOME)/.config/nvim $(HOME)/.config/nayvy; \
-	ln -fs $(HOME)/dotfiles/.vimrc $(HOME)/.config/nvim/init.vim; \
-  ln -fs $(HOME)/dotfiles/.vim/coc-settings.json $(HOME)/.config/nvim \
-  ln -fs $(HOME)/dotfiles/import_config.nayvy $(HOME)/.config/nayvy
+	mkdir -p $(HOME)/.config/nvim; \
+	ln -fs $(HOME)/dotfiles/.vimrc $(HOME)/.config/nvim/init.vim
 
 
 clean: ## Remove the dot files
