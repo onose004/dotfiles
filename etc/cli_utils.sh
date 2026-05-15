@@ -36,6 +36,17 @@ if [[ "${CI:-}" != "true" ]]; then
 fi
 
 # ------------------------------------------------------------------------------
+# tree
+
+command -v tree &>/dev/null || {
+  if command -v apt-get &>/dev/null; then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y tree
+  elif command -v dnf &>/dev/null; then
+    dnf install -y tree
+  fi
+}
+
+# ------------------------------------------------------------------------------
 # bats-core
 
 if ! command -v bats &>/dev/null; then

@@ -19,7 +19,7 @@ if command -v apt-get &>/dev/null; then
   pkg_install() { DEBIAN_FRONTEND=noninteractive apt-get install -y "$@"; }
 elif command -v dnf &>/dev/null; then
   pkg_update() { dnf install -y epel-release 2>/dev/null || true; }
-  pkg_install() { dnf install -y "$@"; }
+  pkg_install() { dnf install -y --allowerasing "$@"; }
 else
   echo "Unsupported package manager" >&2
   exit 1

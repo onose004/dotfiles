@@ -32,3 +32,6 @@ fmt: ## Format shell, YAML, JSON, and Markdown files
 
 test:
 	@DOTPATH=$(DOTPATH) bats "$(DOTPATH)/tests"
+
+test-docker: ## Run integration tests locally via Docker (simulates CI)
+	@bash $(DOTPATH)/etc/verify_dotfiles.sh
