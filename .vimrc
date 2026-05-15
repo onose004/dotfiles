@@ -39,7 +39,10 @@ call plug#end()
 
 " VIEW {{{1
 
-colorscheme nord
+try
+  colorscheme nord
+catch
+endtry
 set diffopt+=vertical
 
 set mouse=a
