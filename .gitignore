@@ -4,6 +4,7 @@
 .dotfiles.bck
 .DS_Store
 .git*
+!.github
 .
 ..
 *.un~
