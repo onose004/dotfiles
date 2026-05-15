@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# 現在のブランチ名を取得
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# ブランチ名が取得できたか確認
+if [ -n "$current_branch" ]; then
+    echo "Current branch: $current_branch"
+    # git fetch と git merge を実行
+    git fetch && git merge "origin/$current_branch"
+else
+    echo "Failed to get current branch name."
+fi
+

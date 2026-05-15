@@ -1,0 +1,8 @@
+version: '2'
+services:
+  onose004-ubuntu-20.04:
+    build:
+      context: .
+      dockerfile: ./docker/ubuntu-20.04/Dockerfile
+    environment:
+      - TZ=Asia/Tokyo

@@ -1,0 +1,36 @@
+{
+  "load_extensions": {
+    "vim_binding/vim_binding": true
+  },
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": true
+    }
+  },
+  "editorConfig": {
+    "rulers": [
+      80
+    ]
+  },
+  "codeCellConfig": {
+    "rulers": [
+      80
+    ],
+    "wordWrapColumn": 80
+  },
+  "Notebook": {
+    "Header": true,
+    "Toolbar": true
+  },
+  "keys": {
+    "command": {
+      "bind": {
+        "m": "vim-binding:change-cell-to-markdown",
+        "c": "vim-binding:change-cell-to-code"
+      }
+    }
+  },
+  "ruler_column": [
+    80
+  ]
+}

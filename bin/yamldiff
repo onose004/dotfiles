@@ -1,0 +1,42 @@
+#!/bin/bash
+# Compare two top-level resource blocks in a YAML file.
+# Usage: yamldiff <file> <KeyA> <KeyB>
+
+set -euo pipefail
+
+usage() {
+    echo "Usage: yamldiff <file.yml> <KeyA> <KeyB>"
+    echo "  Extracts and diffs two top-level (2-space indent) YAML blocks."
+    echo "Example: yamldiff anonymizer.yml LaunchTemplateV1 LaunchTemplateV2"
+    exit 1
+}
+
+[[ $# -ne 3 ]] && usage
+
+FILE="$1"
+KEY_A="$2"
+KEY_B="$3"
+
+extract_block() {
+    local file="$1" key="$2"
+    awk -v key="  ${key}:" '
+        $0 == key { p=1; next }
+        p && /^  [A-Za-z]/ { p=0 }
+        p { print }
+    ' "$file"
+}
+
+BLOCK_A=$(extract_block "$FILE" "$KEY_A")
+BLOCK_B=$(extract_block "$FILE" "$KEY_B")
+
+if [[ -z "$BLOCK_A" ]]; then
+    echo "Key '$KEY_A' not found in $FILE" >&2; exit 1
+fi
+if [[ -z "$BLOCK_B" ]]; then
+    echo "Key '$KEY_B' not found in $FILE" >&2; exit 1
+fi
+
+/usr/bin/diff -u -b --color=auto \
+    <(echo "$BLOCK_A") \
+    <(echo "$BLOCK_B") \
+    | sed "s|^--- .*|--- $KEY_A|; s|^+++ .*|+++ $KEY_B|" || true

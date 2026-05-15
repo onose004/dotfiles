@@ -1,0 +1,19 @@
+[user]
+	email = ryosuke.onose@gmail.com
+	name = Ryosuke Onose
+[core]
+	editor = vim
+[merge]
+	ff = false
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+	prompt = false
+[difftool]
+	prompt = false
+[pull]
+	ff = only
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
