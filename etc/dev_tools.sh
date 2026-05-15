@@ -1,56 +1,39 @@
 #!/bin/bash
 
-# nvim
-
-hash nvim || {
-  echo "Installing nvim..."
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # Ubuntu / CentOS
-    source /etc/os-release
-    if [[ "$NAME" == "Ubuntu" ]]; then
-      apt-get install -y software-properties-common
-      add-apt-repository ppa:neovim-ppa/stable
-      apt-get update -y
-      apt-get install -y neovim
-    elif [[ "$NAME" == "CentOS Linux" ]]; then
-      yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-      yum install -y neovim python3-neovim
-    fi
-  elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
-    # Raspbian
-    echo "Not Implemented"
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # MacOS
-    brew install neovim
-  fi
-}
+set -euo pipefail
 
 # ------------------------------------------------------------------------------
-# Repo Management
-
 # ghq
 
-hash ghq || {
-  echo "Installing ghq..."
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # Ubuntu / CentOS
-    source /etc/os-release
-    git clone https://github.com/x-motemen/ghq /tmp/ghq
-    pushd /tmp/ghq
-    make install
-    popd
-  elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
-    # Raspbian
-    echo "Not Implemented"
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # MacOS
-    brew install ghq
-  fi
-}
+if ! command -v ghq &>/dev/null; then
+  ARCH=$(uname -m)
+  case $ARCH in
+  x86_64) ARCH=amd64 ;;
+  aarch64) ARCH=arm64 ;;
+  esac
+  GHQ_VERSION="1.6.2"
+  curl -fsSL \
+    "https://github.com/x-motemen/ghq/releases/download/v${GHQ_VERSION}/ghq_linux_${ARCH}.zip" \
+    -o /tmp/ghq.zip
+  unzip -o /tmp/ghq.zip -d /tmp/ghq
+  install -m 755 "/tmp/ghq/ghq_linux_${ARCH}/ghq" /usr/local/bin/ghq
+  rm -rf /tmp/ghq.zip /tmp/ghq
+fi
 
 # ------------------------------------------------------------------------------
-# Editor
+# node (via n) — skip in CI
 
-# mkdir -p $HOME/.config/nvim
-# ln -s $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
-# ln -s $HOME/dotfiles/.vim/coc-settings.json $HOME/.config/nvim
+if [[ "${CI:-}" != "true" ]] && ! command -v node &>/dev/null; then
+  if command -v apt-get &>/dev/null; then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm
+  elif command -v dnf &>/dev/null; then
+    dnf install -y nodejs npm
+  fi
+  npm install -g n
+  n stable
+  if command -v apt-get &>/dev/null; then
+    DEBIAN_FRONTEND=noninteractive apt-get purge -y nodejs npm
+  elif command -v dnf &>/dev/null; then
+    dnf remove -y nodejs npm
+  fi
+fi

@@ -1,12 +1,8 @@
 #!/bin/bash
 
-ETC=$HOME/dotfiles/etc
+set -euo pipefail
 
-/bin/bash $ETC/cli_utils.sh || exit 1
-/bin/bash $ETC/dev_tools.sh || exit 1
+ETC="$(cd "$(dirname "$0")" && pwd)"
 
-[[ "$OSTYPE" == "darwin"* ]] && {
-  /bin/bash $ETC/macos.sh || exit 1
-}
-
-exit 0
+bash "$ETC/cli_utils.sh"
+bash "$ETC/dev_tools.sh"
