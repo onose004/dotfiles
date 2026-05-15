@@ -112,4 +112,6 @@ install_addons() {
 # ------------------------------------------------------------------------------
 
 install_essential
-[[ "$ADDONS" == "true" ]] && install_addons
+if [[ "$ADDONS" == "true" ]]; then
+  install_addons
+fi
