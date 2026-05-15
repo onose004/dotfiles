@@ -8,14 +8,10 @@
     }
   },
   "editorConfig": {
-    "rulers": [
-      80
-    ]
+    "rulers": [80]
   },
   "codeCellConfig": {
-    "rulers": [
-      80
-    ],
+    "rulers": [80],
     "wordWrapColumn": 80
   },
   "Notebook": {
@@ -30,7 +26,5 @@
       }
     }
   },
-  "ruler_column": [
-    80
-  ]
+  "ruler_column": [80]
 }

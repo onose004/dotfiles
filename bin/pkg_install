@@ -16,8 +16,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   APT=brew
 fi
 
-for package in $FORMULA
-do
+for package in $FORMULA; do
   hash "$package" || {
     echo "Installing $package..."
     if [[ "$APT" == "brew" ]]; then
