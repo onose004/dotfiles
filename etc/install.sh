@@ -30,7 +30,7 @@ install_essential() {
     --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  nvim +PlugInstall +qall
+  nvim --headless +PlugInstall +qall
 
   # tree
   command -v tree &>/dev/null || {
