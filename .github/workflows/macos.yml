@@ -1,0 +1,41 @@
+name: macos
+
+on:
+  pull_request:
+    paths:
+      - "Brewfile"
+      - "setup.sh"
+      - "etc/install.sh"
+      - "etc/macos.sh"
+      - ".github/workflows/macos.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "Brewfile"
+      - "setup.sh"
+      - "etc/install.sh"
+      - "etc/macos.sh"
+      - ".github/workflows/macos.yml"
+
+jobs:
+  ci-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: bash syntax check
+        run: |
+          bash -n setup.sh
+          bash -n etc/install.sh
+          bash -n etc/macos.sh
+      - name: brew bundle parse
+        run: brew bundle list --all --file=Brewfile
+      - name: brew info per entry
+        run: |
+          set -e
+          while read -r formula; do
+            brew info --formula "$formula" >/dev/null
+          done < <(brew bundle list --formula --file=Brewfile)
+          while read -r cask; do
+            brew info --cask "$cask" >/dev/null
+          done < <(brew bundle list --cask --file=Brewfile)
