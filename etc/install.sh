@@ -50,7 +50,7 @@ install_essential() {
     rm -rf /tmp/bats-core
   fi
 
-  # fzf
+  # fzf — clone for shell integration scripts; binary install differs per OS.
   if [[ ! -d $HOME/.fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
   else
@@ -59,10 +59,13 @@ install_essential() {
     popd
   fi
   "$HOME/.fzf/install" --bin
-  install -m 755 "$HOME/.fzf/bin/fzf" /usr/local/bin/fzf
+  # On macOS the fzf binary comes from Brewfile; only Linux needs a system-wide copy.
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    install -m 755 "$HOME/.fzf/bin/fzf" /usr/local/bin/fzf
+  fi
 
-  # ghq
-  if ! command -v ghq &>/dev/null; then
+  # ghq — Linux only; on macOS it comes from Brewfile.
+  if ! command -v ghq &>/dev/null && [[ "$OSTYPE" != "darwin"* ]]; then
     ARCH=$(uname -m)
     case $ARCH in
     x86_64) ARCH=amd64 ;;
@@ -82,30 +85,26 @@ install_essential() {
 # Addons — skipped when ADDONS=false
 
 install_addons() {
-  # node (via n)
+  # node (via n) — on macOS, n is installed via Brewfile; just pin a stable node.
   if ! command -v node &>/dev/null; then
     if command -v apt-get &>/dev/null; then
       DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm
-    elif command -v dnf &>/dev/null; then
-      dnf install -y nodejs npm
-    fi
-    npm install -g n
-    n stable
-    if command -v apt-get &>/dev/null; then
+      npm install -g n
+      n stable
       DEBIAN_FRONTEND=noninteractive apt-get purge -y nodejs npm
     elif command -v dnf &>/dev/null; then
+      dnf install -y nodejs npm
+      npm install -g n
+      n stable
       dnf remove -y nodejs npm
+    elif command -v n &>/dev/null; then
+      n stable
     fi
   fi
 
   # md-to-pdf
   if ! command -v md-to-pdf &>/dev/null; then
     npm install -g md-to-pdf
-  fi
-
-  # macOS
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    : # TODO(ryosuke.onose.2@hdwlab.co.jp): add brew cask apps
   fi
 }
 

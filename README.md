@@ -8,6 +8,7 @@ My dotfiles growing like bonsai trees.
 
 - Ubuntu 22.04+
 - CentOS Stream 9
+- macOS (Apple Silicon / Intel)
 
 ## Setup
 
@@ -19,15 +20,22 @@ git clone https://github.com/onose004/dotfiles ~/dotfiles
 
 ### 2. Run setup
 
-Root 権限が必要です。
+Linux は root 権限が必要、macOS は通常ユーザーで実行します（Homebrew が root 実行を拒否するため）。
 
 ```sh
+# Linux
 sudo bash ~/dotfiles/setup.sh
+
+# macOS
+bash ~/dotfiles/setup.sh
 ```
 
 以下が自動で行われます:
 
-- 基本ツール (git, tmux, zsh, neovim, make, curl) のインストール
+- 基本ツールのインストール
+  - Linux: `apt-get` / `dnf` で git, tmux, zsh, neovim, make, curl, unzip
+  - macOS: Homebrew をブートストラップし、`Brewfile` に従って CLI / cask アプリを一括インストール
+- macOS 限定: Finder の隠しファイル表示などの defaults 設定 (`etc/macos.sh`)
 - dotfiles のシンボリックリンク作成 (`make deploy`)
 - プラグイン等のインストール (`make install`)
 
