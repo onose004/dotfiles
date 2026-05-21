@@ -1,7 +1,12 @@
 DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 CANDIDATES := $(wildcard .??*)
-EXCLUSIONS := .DS_Store .git *.bck .*.swp
+EXCLUSIONS := .DS_Store .git *.bck .*.swp .claude
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
+# .claude is deployed file-by-file (not as a whole directory) because
+# ~/.claude is a live state directory managed by Claude Code itself
+# (projects/, history.jsonl, sessions/, ...). Only tracked items under
+# .claude/ are symlinked into ~/.claude/.
+CLAUDE_FILES := $(wildcard .claude/* .claude/.??*)
 
 setup: ## Setup environment settings
 	@DOTPATH=$(DOTPATH) /bin/bash $(DOTPATH)/setup.sh
@@ -18,6 +23,8 @@ deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)\
 	mkdir -p $(HOME)/.config/nvim; \
 	ln -fs $(DOTPATH)/.vimrc $(HOME)/.config/nvim/init.vim
+	@mkdir -p $(HOME)/.claude
+	@$(foreach val, $(CLAUDE_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
 
 clean: ## Remove the dot files
