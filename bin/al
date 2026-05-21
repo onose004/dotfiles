@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# 必要なコマンドの存在確認
+command -v awslogs >/dev/null 2>&1 || {
+  echo "awslogs がインストールされていません。インストールしてください: pip install awslogs"
+  exit 1
+}
+command -v fzf >/dev/null 2>&1 || {
+  echo "fzf がインストールされていません。インストールしてください: brew install fzf（Mac）または適切な方法でインストールしてください。"
+  exit 1
+}
+
+# AWS プロファイル指定（必要に応じて変更）
+profile="default"
+region="ap-northeast-1"
+start=3d # デフォルトは 3 日前
+end=""   # デフォルトは現在
+LOG_OPTIONS="-wGS --timestamp"
+
+. $HOME/dotfiles/utils/parse_options.sh || exit 1
+
+# CloudWatch Logs のロググループをすべて取得
+echo "CloudWatch Logs のロググループを取得中..."
+LOG_GROUPS=$(awslogs groups --profile $profile --aws-region $region)
+
+# fzf を使ってロググループを選択
+SELECTED_LOG_GROUP=$(echo "$LOG_GROUPS" | fzf --prompt "ロググループを選択してください: " --height 40% --reverse)
+
+if [ -z "$SELECTED_LOG_GROUP" ]; then
+  echo "ロググループが選択されませんでした。終了します。"
+  exit 1
+fi
+
+echo "選択されたロググループ: $SELECTED_LOG_GROUP"
+
+# awslogs コマンドを組み立て
+AWSLOGS_CMD="awslogs get ${LOG_OPTIONS} \"$SELECTED_LOG_GROUP\" --profile \"$profile\" --aws-region \"$region\"  --start=\"$start\" --end=\"$end\" "
+
+echo "=== awslogs command ==="
+echo "$AWSLOGS_CMD"
+echo "========================"
+# awslogs コマンドを実行
+eval $AWSLOGS_CMD

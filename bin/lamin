@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# 必要なコマンドの存在確認
+command -v aws >/dev/null 2>&1 || {
+  echo "aws CLI がインストールされていません。インストールしてください。"
+  exit 1
+}
+command -v fzf >/dev/null 2>&1 || {
+  echo "fzf がインストールされていません。インストールしてください。"
+  exit 1
+}
+
+# デフォルト値（parse_options.sh によって上書き可能）
+profile="default"
+region="ap-northeast-1"
+payload="{}"
+
+# コマンドライン引数を解析するために parse_options.sh をロード
+. $HOME/dotfiles/utils/parse_options.sh || exit 1
+
+# Lambda 関数の一覧を取得
+echo "Lambda 関数を取得中 (AWS プロファイル: $profile, リージョン: $region)..."
+LAMBDA_FUNCTIONS=$(aws lambda list-functions --profile "$profile" --region "$region" --query 'Functions[*].FunctionName' --output text)
+
+# fzf で Lambda 関数を選択
+SELECTED_FUNCTION=$(echo "$LAMBDA_FUNCTIONS" | tr '\t' '\n' | fzf --prompt "Lambda 関数を選択してください: " --height 40% --reverse)
+
+if [ -z "$SELECTED_FUNCTION" ]; then
+  echo "Lambda 関数が選択されませんでした。終了します。"
+  exit 1
+fi
+
+echo "選択された Lambda 関数: $SELECTED_FUNCTION"
+
+# Lambda 関数を呼び出す
+echo "Lambda 関数 $SELECTED_FUNCTION を呼び出します..."
+LAMBDA_INVOKE_COMMAND="aws lambda invoke --function-name \"$SELECTED_FUNCTION\" --payload \"$payload\" /dev/stdout --profile \"$profile\" --region \"$region\""
+
+echo "=== Lambda command ==="
+echo "$LAMBDA_INVOKE_COMMAND"
+echo "======================"
+
+eval $LAMBDA_INVOKE_COMMAND
+
+# 呼び出し結果を標準出力に表示
+echo "=== Lambda 呼び出し結果 ==="
+echo "$RESULT"
