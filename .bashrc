@@ -1,5 +1,7 @@
 PATH=$HOME/dotfiles/bin:$PATH
 
+[[ -f $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f ~/.safe-chain/scripts/init-posix.sh ] && source ~/.safe-chain/scripts/init-posix.sh

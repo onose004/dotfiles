@@ -14,6 +14,8 @@
 	prompt = false
 [pull]
 	ff = only
-[credential]
+[credential "https://git-codecommit.*.amazonaws.com"]
 	helper = !aws codecommit credential-helper $@
 	UseHttpPath = true
+[credential "https://github.com"]
+	helper = !gh auth git-credential

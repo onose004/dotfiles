@@ -5,9 +5,15 @@
 .DS_Store
 .git*
 !.github
+!.gitconfig
+!.gitignore
 .
 ..
 *.un~
 var/*
 *.swp
 .vim
+
+# .claude: ignore Claude Code state, allow only tracked overrides
+.claude/*
+!.claude/settings.local.json
