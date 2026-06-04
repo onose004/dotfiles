@@ -50,7 +50,10 @@ for app in "$@"; do
     echo "  WARNING: '$app' looks like it is still running. Quit it first (Cmd+Q)."
     echo "  Continue anyway? (y/n)"
     read -r answer
-    [[ $answer != "y" ]] && { echo "  skipped."; continue; }
+    [[ $answer != "y" ]] && {
+      echo "  skipped."
+      continue
+    }
   fi
 
   owner=$(stat -f '%Su' "$app_path")
@@ -73,8 +76,8 @@ for app in "$@"; do
     lc_app=$(echo "$app" | tr '[:upper:] ' '[:lower:]-')
     lc_bundle=$(echo "$bundle" | tr '[:upper:]' '[:lower:]')
     short=$(echo "$lc_app" | tr -d '-')
-    if [[ "$lc_bundle" == *"$short"* ]] \
-       || [[ "$lc_app" == "visual-studio-code" && "$lc_bundle" == *vscode* ]]; then
+    if [[ "$lc_bundle" == *"$short"* ]] ||
+      [[ "$lc_app" == "visual-studio-code" && "$lc_bundle" == *vscode* ]]; then
       echo "  clearing pending update: $dir"
       rm -rf "${dir}"update.* "${dir}ShipItState.plist"
       matched=1

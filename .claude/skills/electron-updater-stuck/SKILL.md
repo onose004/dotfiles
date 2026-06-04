@@ -32,17 +32,21 @@ Squirrel wants to install to do the swap with elevated rights.
 Run these to confirm before recommending a fix:
 
 1. **Find the ShipIt cache** (proof of stuck update):
+
    ```
    ls -la ~/Library/Caches/*.ShipIt/
    ```
+
    Look for `ShipItState.plist` plus an `update.XXXXXX/` directory, and
    multiple `ShipIt_stderr.log.N` files (each retry creates a new log) —
    that pattern confirms the loop.
 
 2. **Check ownership of the app bundle** (the smoking gun):
+
    ```
    ls -lad /Applications/<App>.app
    ```
+
    If owner is `root` (not the current user), this is the cause.
 
 3. **Optional — read a recent failure log** to be sure:
@@ -61,6 +65,7 @@ following for each given app name:
 3. Remove pending updates: `rm -rf ~/Library/Caches/<bundle>.ShipIt/update.* ~/Library/Caches/<bundle>.ShipIt/ShipItState.plist`
 
 Usage:
+
 ```
 fix-electron-updater Notion "Visual Studio Code"
 fix-electron-updater --help
