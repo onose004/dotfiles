@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# Fix stuck Squirrel auto-updater for Electron apps on macOS.
+# Typical symptom: a dialog like
+#   "An update is ready to install. <App> is trying to add a new helper tool."
+# loops every launch because /Applications/<App>.app is owned by root:wheel
+# and Squirrel cannot write the new version.
+
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: fix-electron-updater <AppName> [<AppName> ...]
+
+Fixes the "trying to add a new helper tool" / stuck-updater loop for
+Electron apps (Squirrel.Mac) on macOS.
+
+For each <AppName> (the name under /Applications, without ".app"):
+  1. Warn if the app is currently running
+  2. chown /Applications/<AppName>.app back to the current user (uses sudo)
+  3. Delete pending updates from ~/Library/Caches/*.ShipIt/
+
+Examples:
+  fix-electron-updater Notion
+  fix-electron-updater "Visual Studio Code"
+  fix-electron-updater Notion "Visual Studio Code"
+
+Notes:
+  - Quit the target apps before running (Cmd+Q, including menu-bar items).
+  - The ShipIt cache directory name (e.g. "notion.id.ShipIt",
+    "com.microsoft.VSCode.ShipIt") is auto-detected by app name.
+EOF
+}
+
+if [[ $# -eq 0 || "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+for app in "$@"; do
+  app_path="/Applications/${app}.app"
+  echo "=== ${app} ==="
+
+  if [[ ! -d "$app_path" ]]; then
+    echo "  skip: $app_path not found"
+    continue
+  fi
+
+  if pgrep -x "$app" >/dev/null 2>&1; then
+    echo "  WARNING: '$app' looks like it is still running. Quit it first (Cmd+Q)."
+    echo "  Continue anyway? (y/n)"
+    read -r answer
+    [[ $answer != "y" ]] && { echo "  skipped."; continue; }
+  fi
+
+  owner=$(stat -f '%Su' "$app_path")
+  if [[ "$owner" != "$(whoami)" ]]; then
+    echo "  owner is '$owner' -> running: sudo chown -R $(whoami):staff \"$app_path\""
+    sudo chown -R "$(whoami):staff" "$app_path"
+  else
+    echo "  owner is already $(whoami), skipping chown"
+  fi
+
+  shopt -s nullglob
+  shipit_dirs=(~/Library/Caches/*.ShipIt/)
+  shopt -u nullglob
+
+  matched=0
+  for dir in "${shipit_dirs[@]}"; do
+    bundle=$(basename "$dir" .ShipIt)
+    # Heuristic match: bundle id contains a token from the app name.
+    # e.g. Notion -> "notion.id", "Visual Studio Code" -> "com.microsoft.VSCode"
+    lc_app=$(echo "$app" | tr '[:upper:] ' '[:lower:]-')
+    lc_bundle=$(echo "$bundle" | tr '[:upper:]' '[:lower:]')
+    short=$(echo "$lc_app" | tr -d '-')
+    if [[ "$lc_bundle" == *"$short"* ]] \
+       || [[ "$lc_app" == "visual-studio-code" && "$lc_bundle" == *vscode* ]]; then
+      echo "  clearing pending update: $dir"
+      rm -rf "${dir}"update.* "${dir}ShipItState.plist"
+      matched=1
+    fi
+  done
+
+  if [[ $matched -eq 0 ]]; then
+    echo "  no matching ShipIt cache found under ~/Library/Caches/*.ShipIt/"
+  fi
+
+  echo "  done. Relaunch ${app} and the update should apply cleanly."
+done
