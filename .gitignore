@@ -17,3 +17,5 @@ var/*
 # .claude: ignore Claude Code state, allow only tracked overrides
 .claude/*
 !.claude/settings.local.json
+!.claude/skills
+!.claude/skills/**

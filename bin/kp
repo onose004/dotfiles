@@ -1,30 +1,79 @@
 #!/bin/bash
 
-PORT=$1
+set -u
 
-if [[ -z $PORT ]]; then
-  echo "Port number is required."
+ASSUME_YES=0
+PORTS=()
+
+for arg in "$@"; do
+  case "$arg" in
+  -y | --yes) ASSUME_YES=1 ;;
+  -h | --help)
+    echo "Usage: kp [-y|--yes] <port> [<port>...]"
+    exit 0
+    ;;
+  -*)
+    echo "Unknown option: $arg" >&2
+    exit 1
+    ;;
+  *) PORTS+=("$arg") ;;
+  esac
+done
+
+if [[ ${#PORTS[@]} -eq 0 ]]; then
+  echo "Port number is required." >&2
+  echo "Usage: kp [-y|--yes] <port> [<port>...]" >&2
   exit 1
 fi
 
-echo "Processes running on port $PORT:"
+kill_port() {
+  local port=$1
 
-lsof -i :$PORT
+  echo "Processes running on port $port:"
+  lsof -i :"$port"
 
-echo ""
-echo "Are you sure you want to kill the process on port $PORT? (y/n)"
-read answer
+  local pids
+  pids=$(lsof -ti :"$port")
 
-if [[ $answer != "y" ]]; then
-  echo "Process not killed."
-  exit 0
-fi
+  if [[ -z $pids ]]; then
+    echo "No process found on port $port."
+    return 0
+  fi
 
-PID=$(lsof -i :$PORT | awk '{print $2}' | sed -n '2p')
+  if [[ $ASSUME_YES -ne 1 ]]; then
+    echo ""
+    echo "Are you sure you want to kill the process(es) on port $port? (y/n)"
+    read -r answer
+    if [[ $answer != "y" ]]; then
+      echo "Process not killed."
+      return 0
+    fi
+  fi
 
-if [[ -n $PID ]]; then
-  kill -9 $PID
-  echo "Process on port $PORT killed."
-else
-  echo "No process found on port $PORT."
-fi
+  # SIGTERM first
+  echo "$pids" | xargs -r kill 2>/dev/null
+  sleep 1
+
+  # SIGKILL remaining
+  local remaining
+  remaining=$(lsof -ti :"$port")
+  if [[ -n $remaining ]]; then
+    echo "$remaining" | xargs -r kill -9 2>/dev/null
+  fi
+
+  # Verify
+  if [[ -z $(lsof -ti :"$port") ]]; then
+    echo "Process(es) on port $port killed."
+  else
+    echo "Failed to kill process(es) on port $port." >&2
+    return 1
+  fi
+}
+
+exit_code=0
+for port in "${PORTS[@]}"; do
+  kill_port "$port" || exit_code=1
+  echo ""
+done
+
+exit $exit_code
