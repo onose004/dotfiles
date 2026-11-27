@@ -2,7 +2,7 @@
 	email = ryosuke.onose@gmail.com
 	name = Ryosuke Onose
 [core]
-	editor = vim
+	editor = nvim
 [merge]
 	ff = false
 [diff]

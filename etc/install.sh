@@ -25,6 +25,9 @@ install_essential() {
     "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
   fi
 
+  # neovim — Linux only (no-op on macOS, where it comes from Brewfile).
+  bash "$(dirname "${BASH_SOURCE[0]}")/install_nvim.sh"
+
   # vim-plug
   curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim" \
     --create-dirs \
@@ -105,6 +108,11 @@ install_addons() {
   # md-to-pdf
   if ! command -v md-to-pdf &>/dev/null; then
     npm install -g md-to-pdf
+  fi
+
+  # pyright — Python language server for Neovim's LSP (see .vimrc).
+  if ! command -v pyright-langserver &>/dev/null; then
+    npm install -g pyright
   fi
 }
 
