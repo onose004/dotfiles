@@ -47,10 +47,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif command -v apt-get &>/dev/null; then
   DEBIAN_FRONTEND=noninteractive apt-get update -y
   DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git tmux zsh neovim make curl unzip
+    git tmux zsh make curl unzip
 elif command -v dnf &>/dev/null; then
   dnf install -y epel-release 2>/dev/null || true
-  dnf install -y --allowerasing git tmux zsh neovim make curl unzip
+  dnf install -y --allowerasing git tmux zsh make curl unzip
 else
   echo "Unsupported platform" >&2
   exit 1

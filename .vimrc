@@ -121,5 +121,49 @@ set undofile
 
 " }}}1
 
+" LSP {{{1
+
+" Go-to-definition etc. via Neovim's built-in LSP client (Python: pyright).
+" Keys follow VS Code defaults: F12 = definition, Shift+F12 = references,
+" Ctrl+F12 = implementation. Jump back with CTRL-O. CTRL-] also works.
+" vim.lsp.config()/enable() need Nvim 0.11+; older builds (e.g. the distro
+" package behind /usr/bin/vim) skip this block instead of erroring.
+if has('nvim-0.11')
+lua << EOF
+if vim.fn.executable('pyright-langserver') == 1 then
+  vim.lsp.config('pyright', {
+    cmd = { 'pyright-langserver', '--stdio' },
+    filetypes = { 'python' },
+    root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'pyrightconfig.json', '.git' },
+    settings = {
+      python = {
+        -- Match Pylance's default so type-check noise stays as quiet as in VS Code.
+        analysis = { typeCheckingMode = 'off' },
+      },
+    },
+    -- Like VS Code, prefer the project's .venv so jumps reach installed packages.
+    before_init = function(_, config)
+      local python = config.root_dir and (config.root_dir .. '/.venv/bin/python')
+      if python and vim.fn.executable(python) == 1 then
+        config.settings.python.pythonPath = python
+      end
+    end,
+  })
+  vim.lsp.enable('pyright')
+end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local opts = { buffer = args.buf }
+    vim.keymap.set('n', '<F12>', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<S-F12>', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<C-F12>', vim.lsp.buf.implementation, opts)
+  end,
+})
+EOF
+endif
+
+" }}}1
+
 
 " vim: fdm=marker ts=2 sts=2 sw=2:

@@ -33,7 +33,8 @@ bash ~/dotfiles/setup.sh
 以下が自動で行われます:
 
 - 基本ツールのインストール
-  - Linux: `apt-get` / `dnf` で git, tmux, zsh, neovim, make, curl, unzip
+  - Linux: `apt-get` / `dnf` で git, tmux, zsh, make, curl, unzip
+  - Linux: neovim は公式リリースバイナリを `/usr/local/nvim` に導入 (`etc/install_nvim.sh`)
   - macOS: Homebrew をブートストラップし、`Brewfile` に従って CLI / cask アプリを一括インストール
 - macOS 限定: Finder の隠しファイル表示などの defaults 設定 (`etc/macos.sh`)
 - dotfiles のシンボリックリンク作成 (`make deploy`)
@@ -71,6 +72,8 @@ make update
 ### Editor
 
 - `neovim` + [vim-plug](https://github.com/junegunn/vim-plug)
+  - Linux のバージョンは `etc/install_nvim.sh` の `NVIM_VERSION` で固定。上げるときはそこを書き換えて `bash etc/install_nvim.sh` を実行
+  - Python は組み込み LSP + [pyright](https://github.com/microsoft/pyright) で定義ジャンプ。キーは VS Code に合わせて `F12` 定義 / `Shift+F12` 参照 / `Ctrl+F12` 実装、戻るのは `Ctrl-o`
 
 ### Utils
 
